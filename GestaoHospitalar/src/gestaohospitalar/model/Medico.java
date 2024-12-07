@@ -6,8 +6,8 @@ public class Medico extends Pessoa{
     private String crm;
     private String senha;
 
-    public Medico(int id, String especialidade, String ctps, String crm, String senha, String nome, String identidade, String cpf, String endereco, String telefone) {
-        super(id, nome, identidade, cpf, endereco, telefone);
+    public Medico(int id, String especialidade, String ctps, String crm, String senha, String nome, String cpf, String endereco, String telefone) {
+        super(id, nome, cpf, endereco, telefone);
         this.especialidade = especialidade;
         this.ctps = ctps;
         this.crm = crm;
@@ -47,5 +47,18 @@ public class Medico extends Pessoa{
         this.senha = senha;
     }
     
-    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nId: " + getId());
+        sb.append("\nMedico: " + getNome());
+        sb.append("\nEspecialidade: " + getEspecialidade());
+        sb.append("\nCTPS: " + getCtps());
+        sb.append("\nCRM: " + getCrm());
+        sb.append("\nCPF: " + getCpf());
+        sb.append("\nEndereco: " + getEndereco());
+        sb.append("\nTelefone: " + getTelefone());
+        sb.append("\nSenha: " + getSenha());    
+        return sb.toString();
+    }
 }

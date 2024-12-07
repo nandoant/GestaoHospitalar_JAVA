@@ -104,6 +104,8 @@ public class GestaoHospitalar {
                     //gestaoPaciente.listarPacientes();
                     break;
                 case 3:
+                    //fazer uma verificação do medico para atualizar o paciente, apenas o medico pode atualizar o paciente
+                    //e ou criar um novo metodo apenas para atualizar o status do paciente
                     //gestaoPaciente.atualizarPaciente();
                     break;
                 case 4:

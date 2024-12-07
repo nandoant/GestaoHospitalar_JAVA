@@ -5,8 +5,8 @@ public class Paciente extends Pessoa{
     private String numeroConvenio;
     private String nomeConvenio;
 
-    public Paciente(PacienteStatus statusAtual, String numeroConvenio, String nomeConvenio, int id, String nome, String identidade, String cpf, String endereco, String telefone) {
-        super(id, nome, identidade, cpf, endereco, telefone);
+    public Paciente(PacienteStatus statusAtual, String numeroConvenio, String nomeConvenio, int id, String nome, String cpf, String endereco, String telefone) {
+        super(id, nome, cpf, endereco, telefone);
         this.statusAtual = statusAtual;
         this.numeroConvenio = numeroConvenio;
         this.nomeConvenio = nomeConvenio;

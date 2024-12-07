@@ -1,3 +1,4 @@
+
 package gestaohospitalar;
 
 import java.io.Console;
@@ -98,18 +99,16 @@ public class GestaoHospitalar {
                     sair = true;
                     break;
                 case 1:
-                    //gestaoPaciente.cadastrarPaciente();
+                    gestaoPaciente.cadastrarPaciente();
                     break;
                 case 2:
-                    //gestaoPaciente.listarPacientes();
+                    gestaoPaciente.listarPacientes();
                     break;
                 case 3:
-                    //fazer uma verificação do medico para atualizar o paciente, apenas o medico pode atualizar o paciente
-                    //e ou criar um novo metodo apenas para atualizar o status do paciente
-                    //gestaoPaciente.atualizarPaciente();
+                    gestaoPaciente.atualizarPaciente();
                     break;
                 case 4:
-                    //gestaoPaciente.deletarPaciente();
+                    gestaoPaciente.deletarPaciente();
                     break;
                 default:
                     System.out.println("Opcao Invalida, Digite novamente");
@@ -151,7 +150,6 @@ public class GestaoHospitalar {
                     System.out.println("Opcao Invalida, Digite novamente");
                     break;
             }
-        }
+        }    
     }
-    
 }

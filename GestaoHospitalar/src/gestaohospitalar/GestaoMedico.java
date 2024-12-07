@@ -1,7 +1,6 @@
 package gestaohospitalar;
 
 import gestaohospitalar.model.Medico;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -153,6 +152,13 @@ public class GestaoMedico {
             System.out.println("CPF ja cadastrado");
             return null;
         }
+        
+        System.out.print("Digite a identidade do medico: ");
+        String identidade = scanner.nextLine();
+        if (!validarIdentidade(identidade)) {
+            System.out.println("Identidade ja cadastrada");
+            return null;
+        }
 
         System.out.print("Digite a especialidade do medico: ");
         String especialidade = scanner.nextLine();
@@ -166,12 +172,12 @@ public class GestaoMedico {
         System.out.print("Digite a senha do medico: ");
         String senha = scanner.nextLine();
 
-        if (nome.isEmpty() || crm.isEmpty() || ctps.isEmpty() || cpf.isEmpty() || especialidade.isEmpty() || senha.isEmpty()) {
+        if (nome.isEmpty() || crm.isEmpty() || ctps.isEmpty() || cpf.isEmpty() || especialidade.isEmpty() || senha.isEmpty() || endereco.isEmpty()) {
             System.out.println("Campos obrigatorios nao preenchidos");
             return null;
         }
 
-        return new Medico(0, especialidade, ctps, crm, senha, nome, cpf, endereco, telefone);
+        return new Medico(0, especialidade, ctps, crm, senha, nome, cpf, endereco, telefone, identidade);
     }
 
     private boolean validarCrm(String crm) {
@@ -200,4 +206,25 @@ public class GestaoMedico {
         }
         return true;
     }
+    
+     private boolean validarIdentidade(String identidade) {
+        for (Medico medico : medicos) {
+            if (medico.getIdentidade().equals(identidade)) {
+                return false;
+            }
+        }
+        return true;
+    }
+     
+    public Medico validarMedico(String crm, String senha){
+        for (Medico medico : medicos) {
+            if(medico.getCrm().equals(crm)) {
+                if(medico.getSenha().equals(senha)){
+                     return medico;
+                }
+            }
+        }
+        return null;
+    }
 }
+

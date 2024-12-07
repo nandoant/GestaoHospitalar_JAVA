@@ -1,7 +1,6 @@
 package gestaohospitalar;
 
 import gestaohospitalar.model.Consulta;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +19,4 @@ public class GestaoConsulta {
     public List<Consulta> getConsultas() {
         return consultas;
     }
-    
-        
 }

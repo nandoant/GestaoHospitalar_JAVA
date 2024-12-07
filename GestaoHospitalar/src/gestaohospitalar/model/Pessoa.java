@@ -17,8 +17,14 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
     
+    public int getId(){
+        return id;
+    }
     
-
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -59,6 +65,12 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
     
-    
-    
+    public void exibir(){
+        System.out.println("\n\t Id: " + id);
+        System.out.println("\t Nome: " + nome);
+        System.out.println("\t Identidade: " + identidade);
+        System.out.println("\t CPF: " + cpf);
+        System.out.println("\t Endereço: " + endereco);
+        System.out.println("\t Telefone: " + telefone);
+    }
 }

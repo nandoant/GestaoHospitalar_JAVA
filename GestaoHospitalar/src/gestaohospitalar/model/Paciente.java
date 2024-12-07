@@ -35,7 +35,15 @@ public class Paciente extends Pessoa{
     public void setNomeConvenio(String nomeConvenio) {
         this.nomeConvenio = nomeConvenio;
     }
-
+    
+    @Override
+    public void exibir(){
+        super.exibir();
+        System.out.println("\t Status: " + statusAtual);
+        System.out.println("\t Numero Convenio: " + numeroConvenio);
+        System.out.println("\t Nome Convenio: " + nomeConvenio);
+        System.out.println(" ");
+    }
     
     
     

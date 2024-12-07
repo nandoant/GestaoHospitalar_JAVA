@@ -21,5 +21,5 @@ public class GestaoConsulta {
         return consultas;
     }
     
-    
+        
 }

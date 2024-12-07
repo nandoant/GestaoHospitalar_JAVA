@@ -32,6 +32,7 @@ public class GestaoHospitalar {
                     exibirMedico();
                     break;
                 case 2:
+                    exibirPaciente();
                     break;
                 case 3:
                     break;
@@ -70,6 +71,42 @@ public class GestaoHospitalar {
                     break;
                 case 4:
                     gestaoMedico.deletarMedico();
+                    break;
+                default:
+                    System.out.println("Opcao Invalida, Digite novamente");
+                    break;
+            }
+        }
+    }
+
+    private static void exibirPaciente(){
+        boolean sair = false;
+        while (!sair) {
+
+            System.out.println("\n=== Menu Paciente ===");
+            System.out.println("0. Voltar");
+            System.out.println("1. Cadastrar Paciente");
+            System.out.println("2. Listar Pacientes");
+            System.out.println("3. Atualizar Paciente");
+            System.out.println("4. Deletar Paciente");
+            System.out.println("Escolha uma opcao: ");
+            int opcao = scanner.nextInt();
+
+            switch (opcao) {
+                case 0:
+                    sair = true;
+                    break;
+                case 1:
+                    //gestaoPaciente.cadastrarPaciente();
+                    break;
+                case 2:
+                    //gestaoPaciente.listarPacientes();
+                    break;
+                case 3:
+                    //gestaoPaciente.atualizarPaciente();
+                    break;
+                case 4:
+                    //gestaoPaciente.deletarPaciente();
                     break;
                 default:
                     System.out.println("Opcao Invalida, Digite novamente");

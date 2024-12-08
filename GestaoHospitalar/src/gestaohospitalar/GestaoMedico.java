@@ -16,12 +16,7 @@ public class GestaoMedico {
         this.scanner = new Scanner(System.in);
     }
     
-    public static GestaoMedico getInstance() {
-        if (instance == null) {
-            instance = new GestaoMedico();
-        }
-        return instance;
-    }
+  
 
     public void cadastrarMedico() {
         System.out.println("=== Cadastro de Medico ===");

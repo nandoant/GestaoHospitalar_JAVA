@@ -11,12 +11,14 @@ import java.util.Scanner;
 
 public class GestaoPaciente {
     private List<Paciente> pacientes;
+    private GestaoMedico medico;
     private Scanner scanner;
     private int contador = 1;
 
-    public GestaoPaciente() {
+    public GestaoPaciente(GestaoMedico medico) {
         this.pacientes = new ArrayList<>();
         scanner = new Scanner(System.in);
+        this.medico = medico;
     }
     
     public List<Paciente> getPaciente(){
@@ -123,7 +125,7 @@ public class GestaoPaciente {
         
         System.out.println("Deseja alterar o status do paciente? (pressione S para confirmar)");
         String res = scanner.nextLine().toUpperCase();
-        if(res.equals("S") && !res.isEmpty()){
+        if(res.equalsIgnoreCase("S") || !res.isEmpty()){
             atualizarStatus(paciente);
         }
         
@@ -132,7 +134,7 @@ public class GestaoPaciente {
     
     private Paciente registrarPaciente() {
         
-        String nome,identidade,cpf,endereco,telefone,numeroConvenio,nomeConvenio;
+        String nome,cpf,endereco,telefone,numeroConvenio,nomeConvenio;
         PacienteStatus statusAtual;
        
         
@@ -179,35 +181,58 @@ public class GestaoPaciente {
     }
 
     private void atualizarStatus(Paciente paciente){
-        GestaoMedico medico = new GestaoMedico();
- 
-        System.out.println("Informe o CRM do medico:");
+  
+        System.out.print("Informe o CRM do medico:");
         String crm = scanner.nextLine();
-        System.out.println("Informe a senha do medico:");
+        System.out.print("Informe a senha do medico:");
         String senha = scanner.nextLine();
         
-        Medico medicoEncontrado = medico.validarMedico(crm, senha);
+        var medicoEncontrado = medico.validarMedico(crm, senha);
         
-        if(medicoEncontrado != null){
-              System.out.print("Digite o numero do novo status do paciente (ou pressione Enter para manter o mesmo): ");
-              System.out.println(" \n STATUS PACIENTE: \n\t 1 - ENTRADA \n\t 2 - TRATAMENTO_CLINICO_GERAL \n\t 3 -PREPARACAO_PRE_CIRURGICA \n\t 4 - CIRURGIA \n\t 5 - POS_CIRURGIA \n\t 6- ALTA_CLINICA;");
-              String status = scanner.nextLine();
-              
+        System.out.println("Verificando Medico...");
+
+        if(medicoEncontrado == null){
+            System.out.println("Acesso negado!");
+            
+        } else {
+            System.out.println("Medico autenticado! \n");
+            
+            System.out.print("Digite o numero do novo status do paciente (ou pressione Enter para manter o mesmo): ");
+            System.out.println("\nSTATUS \n\t 1 - ENTRADA \n\t 2 - TRATAMENTO_CLINICO_GERAL \n\t 3 - PREPARACAO_PRE_CIRURGICA \n\t 4 - CIRURGIA \n\t 5 - POS_CIRURGIA \n\t 6- ALTA_CLINICA;");
+            String status = scanner.nextLine();
+
              if (!status.isEmpty()) {
-               int opcao = Integer.parseInt(status);
-                    if (opcao >= 1 && opcao <= PacienteStatus.values().length) {
-                        PacienteStatus novoStatus = PacienteStatus.values()[opcao - 1];
-                        paciente.setStatusAtual(novoStatus);
-                        System.out.println("Status atualizado com sucesso!");
-                        } else {
-                            System.out.println("Opção inválida! Nenhuma alteração foi feita.");
-                        }
-                    }
-                    System.out.println("Status atualizado com sucesso!");
-                    } else {
-                        System.out.println("Acesso negado!");
-                }
-            }   
+                 int opcao = Integer.parseInt(status);
+                 switch (opcao) {
+                     case 1:
+                         paciente.setStatusAtual(PacienteStatus.ENTRADA);
+                         break;
+                     case 2:
+                         paciente.setStatusAtual(PacienteStatus.TRATAMENTO_CLINICO_GERAL);
+                         break;
+                     case 3:
+                         paciente.setStatusAtual(PacienteStatus.PREPARACAO_PRE_CIRURGICA);
+                         break;
+                     case 4:
+                         paciente.setStatusAtual(PacienteStatus.CIRURGIA);
+                         break;
+                     case 5:
+                         paciente.setStatusAtual(PacienteStatus.POS_CIRURGIA);
+                         break;
+                     case 6:
+                         paciente.setStatusAtual(PacienteStatus.ALTA_CLINICA);
+                         break;
+                     default:
+                         System.out.println("Opção inválida! Status não alterado.");
+                         break;
+                 }
+             } else {
+                 System.out.println("Nenhuma alteração de status foi feita.");
+             }
+
+            
         }
+    }   
+ }
     
 

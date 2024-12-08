@@ -152,13 +152,6 @@ public class GestaoMedico {
             System.out.println("CPF ja cadastrado");
             return null;
         }
-        
-        System.out.print("Digite a identidade do medico: ");
-        String identidade = scanner.nextLine();
-        if (!validarIdentidade(identidade)) {
-            System.out.println("Identidade ja cadastrada");
-            return null;
-        }
 
         System.out.print("Digite a especialidade do medico: ");
         String especialidade = scanner.nextLine();
@@ -177,7 +170,7 @@ public class GestaoMedico {
             return null;
         }
 
-        return new Medico(0, especialidade, ctps, crm, senha, nome, cpf, endereco, telefone, identidade);
+        return new Medico(0, especialidade, ctps, crm, senha, nome, cpf, endereco, telefone);
     }
 
     private boolean validarCrm(String crm) {
@@ -207,14 +200,6 @@ public class GestaoMedico {
         return true;
     }
     
-     private boolean validarIdentidade(String identidade) {
-        for (Medico medico : medicos) {
-            if (medico.getIdentidade().equals(identidade)) {
-                return false;
-            }
-        }
-        return true;
-    }
      
     public Medico validarMedico(String crm, String senha){
         for (Medico medico : medicos) {

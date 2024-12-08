@@ -89,14 +89,6 @@ public class GestaoPaciente {
             paciente.setNome(nome);
         }
 
-        System.out.print("Digite a nova identidade do paciente (ou pressione Enter para manter o mesmo): ");
-        String identidade = scanner.nextLine();
-        if (!identidade.isEmpty() && validarIdentidade(identidade)) {
-           paciente.setIdentidade(identidade);
-        } else if (!identidade.isEmpty()) {
-            System.out.println("Identidade ja cadastrada");
-        }
-
         System.out.print("Digite o novo CPF do paciente (ou pressione Enter para manter o mesmo): ");
         String cpf = scanner.nextLine();
         if (!cpf.isEmpty() && validarCpf(cpf)) {
@@ -147,13 +139,6 @@ public class GestaoPaciente {
         System.out.print("Digite o nome do paciente: ");
         nome = scanner.nextLine();
 
-        System.out.print("Digite a identidade do paciente: ");
-        identidade = scanner.nextLine();
-        if (!validarIdentidade(identidade)) {
-            System.out.println("Identidade ja cadastrada");
-            return null;
-        }
-
       
         System.out.print("Digite o CPF do paciente: ");
         cpf = scanner.nextLine();
@@ -174,28 +159,19 @@ public class GestaoPaciente {
         System.out.print("Digite o endereco do paciente ");
         endereco = scanner.nextLine();
         
-        if (nome.isEmpty() || identidade.isEmpty() || cpf.isEmpty() || nomeConvenio.isEmpty() || numeroConvenio.isEmpty() || telefone.isEmpty() || endereco.isEmpty()) {
+        if (nome.isEmpty() || cpf.isEmpty() || nomeConvenio.isEmpty() || numeroConvenio.isEmpty() || telefone.isEmpty() || endereco.isEmpty()) {
             System.out.println("Campos obrigatorios nao preenchidos");
             return null;
         }
         
         statusAtual = PacienteStatus.ENTRADA;
-        return new Paciente(statusAtual, numeroConvenio, nomeConvenio,0,nome, identidade, cpf,endereco,telefone);
+        return new Paciente(statusAtual, numeroConvenio, nomeConvenio,0,nome, cpf,endereco,telefone);
     }
     
     
     private boolean validarCpf(String cpf) {
         for (Paciente paciente : pacientes) {
             if (paciente.getCpf().equals(cpf)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-     private boolean validarIdentidade(String identidade) {
-        for (Paciente paciente : pacientes) {
-            if (paciente.getIdentidade().equals(identidade)) {
                 return false;
             }
         }

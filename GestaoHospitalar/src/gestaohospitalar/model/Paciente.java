@@ -5,8 +5,8 @@ public class Paciente extends Pessoa{
     private String numeroConvenio;
     private String nomeConvenio;
 
-    public Paciente(PacienteStatus statusAtual, String numeroConvenio, String nomeConvenio, int id, String nome, String identidade, String cpf, String endereco, String telefone) {
-        super(id, nome, identidade, cpf, endereco, telefone);
+    public Paciente(PacienteStatus statusAtual, String numeroConvenio, String nomeConvenio, int id, String nome, String cpf, String endereco, String telefone) {
+        super(id, nome, cpf, endereco, telefone);
         this.statusAtual = statusAtual;
         this.numeroConvenio = numeroConvenio;
         this.nomeConvenio = nomeConvenio;
@@ -50,7 +50,6 @@ public class Paciente extends Pessoa{
         StringBuilder sb = new StringBuilder();
         sb.append("\nId: " + getId());
         sb.append("\nPaciente: " + getNome());
-        sb.append("\nIdentidade: " + getIdentidade());
         sb.append("\nCPF: " + getCpf());
         sb.append("\nEndereco: " + getEndereco());
         sb.append("\nTelefone: " + getTelefone());

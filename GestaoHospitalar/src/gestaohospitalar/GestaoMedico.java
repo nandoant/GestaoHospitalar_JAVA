@@ -8,11 +8,19 @@ import java.util.Scanner;
 public class GestaoMedico {
     private List<Medico> medicos;
     private int contador = 1;
+    private static GestaoMedico instance;
     private Scanner scanner;
 
     public GestaoMedico() {
         this.medicos = new ArrayList<>();
         this.scanner = new Scanner(System.in);
+    }
+    
+    public static GestaoMedico getInstance() {
+        if (instance == null) {
+            instance = new GestaoMedico();
+        }
+        return instance;
     }
 
     public void cadastrarMedico() {
@@ -170,7 +178,7 @@ public class GestaoMedico {
             return null;
         }
 
-        return new Medico(0, especialidade, ctps, crm, senha, nome, cpf, endereco, telefone);
+        return new Medico(0, especialidade, crm, ctps, senha, nome, cpf, endereco, telefone);
     }
 
     private boolean validarCrm(String crm) {
@@ -201,15 +209,13 @@ public class GestaoMedico {
     }
     
      
-    public Medico validarMedico(String crm, String senha){
-        for (Medico medico : medicos) {
-            if(medico.getCrm().equals(crm)) {
-                if(medico.getSenha().equals(senha)){
-                     return medico;
-                }
+   public Medico validarMedico(String crm, String senha){
+        for(Medico medico: medicos){
+            if(medico.getCrm().equals(crm) && medico.getSenha().equals(senha)){
+                return medico;
             }
         }
         return null;
-    }
+   }
 }
 

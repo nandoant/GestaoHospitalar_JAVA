@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class GestaoHospitalar {
     private static GestaoMedico gestaoMedico = new GestaoMedico();
-    private static GestaoPaciente gestaoPaciente = new GestaoPaciente();
+    private static GestaoPaciente gestaoPaciente = new GestaoPaciente(gestaoMedico);
     private static GestaoConsulta gestaoConsulta = new GestaoConsulta();
     private static Scanner scanner = new Scanner(System.in);
 

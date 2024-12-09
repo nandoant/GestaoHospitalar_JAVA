@@ -129,7 +129,10 @@ public class GestaoConsulta {
             return null;
         }
 
-        return new Consulta(0, paciente, medico, descricao);
+        Medico novoMedico = medico;
+        Paciente novoPaciente = paciente;
+
+        return new Consulta(0, novoPaciente, novoMedico, descricao);
     }
 
     private Medico selecionarMedico() {

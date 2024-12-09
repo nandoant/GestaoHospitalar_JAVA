@@ -17,7 +17,7 @@ public class ConsoleUI {
                 valor = Integer.parseInt(scanner.nextLine());
                 valido = true;
             } catch (Exception e) {
-                System.out.println("Valor inválido. Tente novamente.");
+                System.out.println("Valor invalido. Tente novamente.");
             }
         } while (!valido);
         scanner.close();
@@ -33,11 +33,11 @@ public class ConsoleUI {
                 valor = Integer.parseInt(scanner.nextLine());
                 valido = true;
             } catch (Exception e) {
-                System.out.println("Valor inválido. Tente novamente.");
+                System.out.println("Valor invalido. Tente novamente.");
             }
         } while (!valido);
 
-        scanner.close();
+
         return valor;
     }
 }

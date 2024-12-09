@@ -109,6 +109,22 @@ public class GestaoConsulta {
         System.out.println("Pressione qualquer tecla para continuar...");
         scanner.nextLine();
     }
+    
+    public boolean possuiPaciente(Paciente paciente){
+        for(var consulta:consultas){
+            if(consulta.getPaciente().getId() == paciente.getId())
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean possuiMedico(Medico medico){
+        for(var consulta:consultas){
+            if(consulta.getMedico().getId() == medico.getId())
+                return true;
+        }
+        return false;
+    }
 
     private Consulta buscarConsulta(int consultaID) {
         for (Consulta consulta : consultas) {
@@ -181,9 +197,29 @@ public class GestaoConsulta {
     }
 
     private Paciente selecionarPaciente() {
-        gestaoPaciente.listarPacientes();
+        gestaoPaciente.exibirPacientes();
         System.out.print("Digite o ID do paciente: ");
         int pacienteId = Console.lerInteiro();
         return gestaoPaciente.buscarPaciente(pacienteId);
+    }
+
+    public void buscarConsultaPorId() {
+        Console.clear();
+        System.out.println("=== Buscar Consulta por ID ===");
+        System.out.print("Digite o ID da consulta: ");
+        int id = Console.lerInteiro();
+        
+        Consulta consulta = buscarConsulta(id);
+        if (consulta != null) {
+            System.out.println("--------------------------------------------------------");
+            System.out.println("CONSULTA #" + String.format("%03d", consulta.getId()));
+            System.out.println("--------------------------------------------------------");
+            System.out.println(consulta.toString());
+        } else {
+            System.out.println("Consulta não encontrada.");
+        }
+        
+        System.out.println("\nPressione qualquer tecla para continuar...");
+        scanner.nextLine();
     }
 }

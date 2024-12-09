@@ -54,7 +54,7 @@ public class Paciente extends Pessoa{
                 + "-----------------------------\n"
                 + "CPF: " + getCpf() + "\n"
                 + "-----------------------------\n"
-                + "Endereço: " + getEndereco() + "\n"
+                + "Endereco: " + getEndereco() + "\n"
                 + "-----------------------------\n"
                 + "Telefone: " + getTelefone() + "\n"
                 + "-----------------------------\n"

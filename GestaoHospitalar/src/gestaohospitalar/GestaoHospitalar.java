@@ -1,7 +1,6 @@
 
 package gestaohospitalar;
 
-import java.io.Console;
 import java.util.Scanner;
 
 public class GestaoHospitalar {

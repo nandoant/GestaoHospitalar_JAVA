@@ -1,6 +1,5 @@
 package gestaohospitalar;
 
-import gestaohospitalar.model.Medico;
 import gestaohospitalar.model.Paciente;
 
 import gestaohospitalar.model.PacienteStatus;

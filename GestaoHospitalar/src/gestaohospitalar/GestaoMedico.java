@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class GestaoMedico {
     private List<Medico> medicos;
     private int contador = 1;
-    private static GestaoMedico instance;
     private Scanner scanner;
 
     public GestaoMedico() {

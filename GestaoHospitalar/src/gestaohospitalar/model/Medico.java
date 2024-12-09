@@ -48,18 +48,38 @@ public class Medico extends Pessoa{
         this.senha = senha;
     }
     
+    //Fazer um toString que exiba nesse formato abaixo, porem mostrando todos os dados dele:
+    /*
+    ============================
+    MEDICO #001 
+    ============================
+    Nome: Fernando      
+    -----------------------------
+    Especialidade: Cardiologista          
+    -----------------------------
+     */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nId: " + getId());
-        sb.append("\nMedico: " + getNome());
-        sb.append("\nEspecialidade: " + getEspecialidade());
-        sb.append("\nCTPS: " + getCtps());
-        sb.append("\nCRM: " + getCrm());
-        sb.append("\nCPF: " + getCpf());
-        sb.append("\nEndereco: " + getEndereco());
-        sb.append("\nTelefone: " + getTelefone());
-        sb.append("\nSenha: " + getSenha());    
-        return sb.toString();
+        return "=============================\n"
+                + "MEDICO #" + String.format("%03d", getId()) + "\n"
+                + "=============================\n"
+                + "Nome: " + getNome() + "\n"
+                + "-----------------------------\n"
+                + "Especialidade: " + especialidade + "\n"
+                + "-----------------------------\n"
+                + "CRM: " + crm + "\n"
+                + "-----------------------------\n"
+                + "CTPS: " + ctps + "\n"
+                + "-----------------------------\n"
+                + "CPF: " + getCpf() + "\n"
+                + "-----------------------------\n"
+                + "Telefone: " + getTelefone() + "\n"
+                + "-----------------------------\n"
+                + "Endereço: " + getEndereco() + "\n"
+                + "-----------------------------\n"
+                + "Senha: " + senha + "\n"
+                + "-----------------------------\n";
+
     }
+
 }

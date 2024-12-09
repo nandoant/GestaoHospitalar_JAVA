@@ -1,5 +1,7 @@
 package gestaohospitalar.model;
 
+import java.lang.reflect.Executable;
+
 public abstract class Pessoa {
     private int id;
     private String nome;
@@ -31,7 +33,7 @@ public abstract class Pessoa {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome) throws Exception {
         validacaoSimples(nome, nome);
         this.nome = nome;
     }
@@ -40,7 +42,7 @@ public abstract class Pessoa {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(String cpf) throws Exception {
         validacaoSimples(cpf, cpf);
         this.cpf = cpf;
     }
@@ -49,7 +51,7 @@ public abstract class Pessoa {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(String endereco) throws Exception {
         validacaoSimples(endereco, endereco);
         this.endereco = endereco;
     }
@@ -58,18 +60,18 @@ public abstract class Pessoa {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(String telefone) throws Exception {
         validacaoSimples(telefone, telefone);
         this.telefone = telefone;
     }
 
-    private void validacaoSimples(String valor, String campo){
+    private void validacaoSimples(String valor, String campo) throws Exception{
         valor = valor.trim();
         if(valor.isEmpty()){
-            throw new Error(campo + " nao pode ser vazio");
+            throw new Exception(campo + " nao pode ser vazio");
         }
         if(valor.length() < 3){
-            throw new Error(campo + " deve ter no minimo 3 caracteres");
+            throw new Exception(campo + " deve ter no minimo 3 caracteres");
         }
     }
     

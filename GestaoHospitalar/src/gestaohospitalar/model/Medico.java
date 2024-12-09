@@ -23,7 +23,7 @@ public class Medico extends Pessoa{
         return especialidade;
     }
 
-    public void setEspecialidade(String especialidade) {
+    public void setEspecialidade(String especialidade) throws Exception {
         validacaoSimples(especialidade, "Especialidade");
 
         this.especialidade = especialidade;
@@ -33,7 +33,7 @@ public class Medico extends Pessoa{
         return ctps;
     }
 
-    public void setCtps(String ctps) {
+    public void setCtps(String ctps) throws Exception {
         validacaoSimples(ctps, "CTPS");
         this.ctps = ctps;
     }
@@ -42,7 +42,7 @@ public class Medico extends Pessoa{
         return crm;
     }
 
-    public void setCrm(String crm) {
+    public void setCrm(String crm) throws Exception {
         validacaoSimples(crm, "CRM");
         this.crm = crm;
     }
@@ -51,18 +51,18 @@ public class Medico extends Pessoa{
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public void setSenha(String senha) throws Exception {
         validacaoSimples(senha, "Senha");
         this.senha = senha;
     }
     
-    private void validacaoSimples(String valor, String campo){
+    private void validacaoSimples(String valor, String campo) throws Exception{
         valor = valor.trim();
         if(valor.isEmpty()){
-            throw new Error(campo + " nao pode ser vazio");
+            throw new Exception(campo + " nao pode ser vazio");
         }
         if(valor.length() < 3){
-            throw new Error(campo + " deve ter no minimo 3 caracteres");
+            throw new Exception(campo + " deve ter no minimo 3 caracteres");
         }
     }
 

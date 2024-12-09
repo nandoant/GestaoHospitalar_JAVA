@@ -5,16 +5,12 @@ public class Consulta {
     Paciente paciente;
     Medico medico;
     String descricao;
-    PacienteStatus statusAtualPaciente;
-    PacienteStatus statusAnteriorPaciente;
 
-    public Consulta(int id, Paciente paciente, Medico medico, String descricao, PacienteStatus statusAtualPaciente, PacienteStatus statusAnteriorPaciente) {
+    public Consulta(int id, Paciente paciente, Medico medico, String descricao) {
         this.id = id;
         this.paciente = paciente;
         this.medico = medico;
         this.descricao = descricao;
-        this.statusAtualPaciente = statusAtualPaciente;
-        this.statusAnteriorPaciente = statusAnteriorPaciente;
     }
 
     public int getId() {
@@ -50,20 +46,27 @@ public class Consulta {
     }
 
     public PacienteStatus getStatusAtualPaciente() {
-        return statusAtualPaciente;
+        return this.paciente.getStatusAtual();
     }
 
-    public void setStatusAtualPaciente(PacienteStatus statusAtualPaciente) {
-        this.statusAtualPaciente = statusAtualPaciente;
+    @Override
+    public String toString() {
+        return "PACIENTE:\n" +
+                "\t- ID: " + paciente.getId() + "\n" +
+                "\t- Nome: " + paciente.getNome() + "\n" +
+                "\t- CPF: " + paciente.getCpf() + "\n" +
+                "\t- Convenio: " + paciente.getNomeConvenio() + "\n" +
+                "\t- Numero Convenio: " + paciente.getNumeroConvenio() + "\n" +
+                "\t- Status: " + paciente.getStatusAtual() + "\n\n"+
+                "MEDICO:\n" +
+                "\t- ID: " + medico.getId() + "\n" +
+                "\t- Nome: " + medico.getNome() + "\n" +
+                "\t- Especialidade: " + medico.getEspecialidade() + "\n"+
+                "\t- CRM: " + medico.getCrm() + "\n" + 
+                "\nDESCRICAO:\n" +
+                "\t- " + descricao + "\n";
     }
-
-    public PacienteStatus getStatusAnteriorPaciente() {
-        return statusAnteriorPaciente;
-    }
-
-    public void setStatusAnteriorPaciente(PacienteStatus statusAnteriorPaciente) {
-        this.statusAnteriorPaciente = statusAnteriorPaciente;
-    }
+    
     
     
 }

@@ -28,7 +28,7 @@ public class GestaoMedico {
         scanner.nextLine();
     }
 
-    private void exibirMedicos(){
+    public void exibirMedicos(){
         if (medicos.isEmpty()) {
             System.out.println("Nenhum medico cadastrado.");
         } else {

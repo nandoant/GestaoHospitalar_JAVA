@@ -3,6 +3,8 @@ package gestaohospitalar;
 
 import java.util.Scanner;
 
+import gestaohospitalar.Utils.ConsoleUI;
+
 public class GestaoHospitalar {
     private static GestaoMedico gestaoMedico = new GestaoMedico();
     private static GestaoPaciente gestaoPaciente = new GestaoPaciente(gestaoMedico);
@@ -16,6 +18,7 @@ public class GestaoHospitalar {
     private static void exibirMenu() {
         boolean sair = false;
         while(!sair){
+            ConsoleUI.clear();
             System.out.println("=== Menu Gestao Hospitalar ===");
             System.out.println("0. Encerrar Programa");
             System.out.println("1. Medico");
@@ -47,14 +50,14 @@ public class GestaoHospitalar {
     private static void exibirMedico(){
         boolean sair = false;
         while (!sair) {
-
+            ConsoleUI.clear();
             System.out.println("\n=== Menu Medico ===");
             System.out.println("0. Voltar");
             System.out.println("1. Cadastrar Medico");
             System.out.println("2. Listar Medicos");
             System.out.println("3. Atualizar Medico");
             System.out.println("4. Deletar Medico");
-            System.out.println("Escolha uma opcao: ");
+            System.out.print("Escolha uma opcao: ");
             int opcao = scanner.nextInt();
 
             switch (opcao) {
@@ -83,7 +86,7 @@ public class GestaoHospitalar {
     private static void exibirPaciente(){
         boolean sair = false;
         while (!sair) {
-
+            ConsoleUI.clear();
             System.out.println("\n=== Menu Paciente ===");
             System.out.println("0. Voltar");
             System.out.println("1. Cadastrar Paciente");
@@ -119,7 +122,7 @@ public class GestaoHospitalar {
     private static void exibirConsulta(){
         boolean sair = false;
         while (!sair) {
-
+            ConsoleUI.clear();
             System.out.println("\n=== Menu Consulta ===");
             System.out.println("0. Voltar");
             System.out.println("1. Cadastrar Consulta");

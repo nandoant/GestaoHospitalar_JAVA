@@ -1,7 +1,5 @@
 package gestaohospitalar.model;
 
-import java.lang.reflect.Executable;
-
 public abstract class Pessoa {
     private int id;
     private String nome;

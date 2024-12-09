@@ -19,6 +19,9 @@ public class GestaoPaciente {
         this.pacientes = new ArrayList<>();
         scanner = new Scanner(System.in);
         this.medico = medico;
+        //adcionar um paciente para teste
+        Paciente paciente = new Paciente(PacienteStatus.ENTRADA, "123456", "Unimed", 0, "Maria", "123456", "Rua 1", "123456");
+        pacientes.add(paciente);
     }
     
     public List<Paciente> getPaciente(){
@@ -60,7 +63,7 @@ public class GestaoPaciente {
           }
       }
     
-    private Paciente buscarPaciente (int pacienteID) {
+    public Paciente buscarPaciente (int pacienteID) {
         for (Paciente paciente : pacientes) {
             if (paciente.getId() == pacienteID) {
                 return paciente;

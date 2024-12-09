@@ -14,6 +14,9 @@ public class GestaoMedico {
     public GestaoMedico() {
         this.medicos = new ArrayList<>();
         this.scanner = new Scanner(System.in);
+        //adcionar um medico para teste
+        Medico medico = new Medico(0, "Cardiologista", "123456", "123456", "123456", "Joao", "123456", "Rua 1", "123456");
+        medicos.add(medico);
     }
     
   
@@ -66,7 +69,7 @@ public class GestaoMedico {
         }
     }
 
-    private Medico buscarMedico(int medicoID) {
+    public Medico buscarMedico(int medicoID) {
         for (Medico medico : medicos) {
             if (medico.getId() == medicoID) {
                 return medico;

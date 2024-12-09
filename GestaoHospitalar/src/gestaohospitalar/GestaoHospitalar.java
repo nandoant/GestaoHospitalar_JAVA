@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class GestaoHospitalar {
     private static GestaoMedico gestaoMedico = new GestaoMedico();
     private static GestaoPaciente gestaoPaciente = new GestaoPaciente(gestaoMedico);
-    private static GestaoConsulta gestaoConsulta = new GestaoConsulta();
+    private static GestaoConsulta gestaoConsulta = new GestaoConsulta(gestaoMedico, gestaoPaciente);
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -135,16 +135,16 @@ public class GestaoHospitalar {
                     sair = true;
                     break;
                 case 1:
-                    //gestaoConsulta.cadastrarConsulta();
+                    gestaoConsulta.cadastrarConsulta();
                     break;
                 case 2:
-                    //gestaoConsulta.listarConsultas();
+                    gestaoConsulta.listarConsultas();
                     break;
                 case 3:
-                    //gestaoConsulta.atualizarConsulta();
+                    gestaoConsulta.atualizarConsulta();
                     break;
                 case 4:
-                    //gestaoConsulta.deletarConsulta();
+                    gestaoConsulta.deletarConsulta();
                     break;
                 default:
                     System.out.println("Opcao Invalida, Digite novamente");

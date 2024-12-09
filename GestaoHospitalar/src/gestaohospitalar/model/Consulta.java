@@ -48,6 +48,24 @@ public class Consulta {
     public PacienteStatus getStatusAtualPaciente() {
         return this.paciente.getStatusAtual();
     }
+
+    @Override
+    public String toString() {
+        return "PACIENTE:\n" +
+                "\t- ID: " + paciente.getId() + "\n" +
+                "\t- Nome: " + paciente.getNome() + "\n" +
+                "\t- CPF: " + paciente.getCpf() + "\n" +
+                "\t- Convenio: " + paciente.getNomeConvenio() + "\n" +
+                "\t- Numero Convenio: " + paciente.getNumeroConvenio() + "\n" +
+                "\t- Status: " + paciente.getStatusAtual() + "\n\n"+
+                "MEDICO:\n" +
+                "\t- ID: " + medico.getId() + "\n" +
+                "\t- Nome: " + medico.getNome() + "\n" +
+                "\t- Especialidade: " + medico.getEspecialidade() + "\n"+
+                "\t- CRM: " + medico.getCrm() + "\n" + 
+                "\nDESCRICAO:\n" +
+                "\t- " + descricao + "\n";
+    }
     
     
     

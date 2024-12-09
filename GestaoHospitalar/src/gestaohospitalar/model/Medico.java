@@ -59,13 +59,13 @@ public class Medico extends Pessoa{
     private void validacaoSimples(String valor, String campo){
         valor = valor.trim();
         if(valor.isEmpty()){
-            throw new Error(campo + " não pode ser vazio");
+            throw new Error(campo + " nao pode ser vazio");
         }
         if(valor.length() < 3){
             throw new Error(campo + " deve ter no minimo 3 caracteres");
         }
     }
-    
+
     @Override
     public String toString() {
         return "=============================\n"

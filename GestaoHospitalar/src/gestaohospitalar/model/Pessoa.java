@@ -34,7 +34,7 @@ public abstract class Pessoa {
     }
 
     public void setNome(String nome) throws Exception {
-        validacaoSimples(nome, nome);
+        validacaoSimples(nome, "nome");
         this.nome = nome;
     }
 
@@ -43,7 +43,7 @@ public abstract class Pessoa {
     }
 
     public void setCpf(String cpf) throws Exception {
-        validacaoSimples(cpf, cpf);
+        validacaoSimples(cpf, "cpf");
         this.cpf = cpf;
     }
 
@@ -52,7 +52,7 @@ public abstract class Pessoa {
     }
 
     public void setEndereco(String endereco) throws Exception {
-        validacaoSimples(endereco, endereco);
+        validacaoSimples(endereco, "endereco");
         this.endereco = endereco;
     }
 
@@ -61,7 +61,7 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(String telefone) throws Exception {
-        validacaoSimples(telefone, telefone);
+        validacaoSimples(telefone, "telefone");
         this.telefone = telefone;
     }
 

@@ -109,6 +109,22 @@ public class GestaoConsulta {
         System.out.println("Pressione qualquer tecla para continuar...");
         scanner.nextLine();
     }
+    
+    public boolean possuiPaciente(Paciente paciente){
+        for(var consulta:consultas){
+            if(consulta.getPaciente().getId() == paciente.getId())
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean possuiMedico(Medico medico){
+        for(var consulta:consultas){
+            if(consulta.getMedico().getId() == medico.getId())
+                return true;
+        }
+        return false;
+    }
 
     private Consulta buscarConsulta(int consultaID) {
         for (Consulta consulta : consultas) {
@@ -181,7 +197,7 @@ public class GestaoConsulta {
     }
 
     private Paciente selecionarPaciente() {
-        gestaoPaciente.listarPacientes();
+        gestaoPaciente.exibirPacientes();
         System.out.print("Digite o ID do paciente: ");
         int pacienteId = Console.lerInteiro();
         return gestaoPaciente.buscarPaciente(pacienteId);

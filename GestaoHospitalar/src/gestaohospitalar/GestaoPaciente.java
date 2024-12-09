@@ -57,6 +57,18 @@ public class GestaoPaciente {
         System.out.println("Pressione qualquer tecla para continuar...");
         scanner.nextLine();
     }
+    
+    public void exibirPacientes(){
+        Console.clear();
+        System.out.println("=== Lista de Pacientes ===");
+        if (pacientes.isEmpty()) {
+            System.out.println("Nenhum paciente cadastrado.");
+        } else {
+            for (Paciente paciente : pacientes) {
+                System.out.println(paciente);
+            }
+        }
+    }
 
     public void atualizarPaciente() {
         Console.clear();
@@ -80,20 +92,8 @@ public class GestaoPaciente {
         scanner.nextLine();
     }
 
-    public void deletarPaciente() {
-        Console.clear();
-        System.out.println("=== Deletar Paciente ===");
-        System.out.print("Digite o ID do paciente que deseja deletar: ");
-        int id = Console.lerInteiro();
-        Paciente paciente = buscarPaciente(id);
-        if (paciente != null) {
-            pacientes.remove(paciente);
-            System.out.println("Paciente deletado com sucesso");
-        } else {
-            System.out.println("Paciente nao encontrado");
-        }
-        System.out.println("Pressione qualquer tecla para continuar...");
-        scanner.nextLine();
+    public void remover(Paciente paciente){
+        pacientes.remove(paciente);
     }
 
     public void buscarPacientePorId() {

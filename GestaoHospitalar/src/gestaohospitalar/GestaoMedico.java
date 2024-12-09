@@ -80,20 +80,8 @@ public class GestaoMedico {
         }
     }
 
-    public void deletarMedico() {
-        Console.clear();
-        System.out.println("=== Deletar Medico ===");
-        System.out.print("Digite o ID do medico que deseja deletar: ");
-        int id = Console.lerInteiro();
-        Medico medico = buscarMedico(id);
-        if (medico != null) {
-            medicos.remove(medico);
-            System.out.println("Medico deletado com sucesso");
-        } else {
-            System.out.println("Medico nao encontrado");
-        }
-        System.out.println("Pressione qualquer tecla para continuar...");
-        scanner.nextLine();
+    public void remover(Medico medico){
+        medicos.remove(medico);
     }
 
     public Medico buscarMedico(int medicoID) {

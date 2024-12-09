@@ -3,11 +3,15 @@ package gestaohospitalar;
 
 
 import gestaohospitalar.Utils.Console;
+import gestaohospitalar.model.Medico;
+import gestaohospitalar.model.Paciente;
+import java.util.Scanner;
 
 public class GestaoHospitalar {
     private static GestaoMedico gestaoMedico = new GestaoMedico();
     private static GestaoPaciente gestaoPaciente = new GestaoPaciente(gestaoMedico);
     private static GestaoConsulta gestaoConsulta = new GestaoConsulta(gestaoMedico, gestaoPaciente);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         exibirMenu();
@@ -73,7 +77,7 @@ public class GestaoHospitalar {
                     gestaoMedico.atualizarMedico();
                     break;
                 case 4:
-                    gestaoMedico.deletarMedico();
+                    deletarMedico();
                     break;
                 case 5:
                     gestaoMedico.buscarMedicoById();
@@ -113,7 +117,7 @@ public class GestaoHospitalar {
                     gestaoPaciente.atualizarPaciente();
                     break;
                 case 4:
-                    gestaoPaciente.deletarPaciente();
+                    deletarPaciente();
                     break;
                 case 5:
                     gestaoPaciente.buscarPacientePorId();
@@ -163,5 +167,45 @@ public class GestaoHospitalar {
                     break;
             }
         }    
+    }
+    
+    private static void deletarPaciente() {
+        Console.clear();
+        System.out.println("=== Deletar Paciente ===");
+        System.out.print("Digite o ID do paciente que deseja deletar: ");
+        int id = Console.lerInteiro();
+        Paciente paciente = gestaoPaciente.buscarPaciente(id);
+        if (paciente != null) {
+            if(!gestaoConsulta.possuiPaciente(paciente)){
+                gestaoPaciente.remover(paciente);
+                System.out.println("Paciente deletado com sucesso");
+            }else{
+                System.out.println("Paciente nao pode ser deletado: Ele esta registrado em uma consulta");
+            }
+        } else {
+            System.out.println("Paciente nao encontrado");
+        }
+        System.out.println("Pressione qualquer tecla para continuar...");
+        scanner.nextLine();
+    }
+    
+    public static void deletarMedico() {
+        Console.clear();
+        System.out.println("=== Deletar Medico ===");
+        System.out.print("Digite o ID do medico que deseja deletar: ");
+        int id = Console.lerInteiro();
+        Medico medico = gestaoMedico.buscarMedico(id);
+        if (medico != null) {
+            if(!gestaoConsulta.possuiMedico(medico)){
+                gestaoMedico.remover(medico);
+                System.out.println("Medico deletado com sucesso");
+            }else {
+                System.out.println("Medico nao pode ser deletado: Ele esta registrado em uma consulta");
+            }
+        } else {
+            System.out.println("Medico nao encontrado");
+        }
+        System.out.println("Pressione qualquer tecla para continuar...");
+        scanner.nextLine();
     }
 }

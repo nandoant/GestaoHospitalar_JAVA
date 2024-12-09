@@ -83,7 +83,7 @@ public class Medico extends Pessoa{
                 + "-----------------------------\n"
                 + "Telefone: " + getTelefone() + "\n"
                 + "-----------------------------\n"
-                + "Endereço: " + getEndereco() + "\n"
+                + "Endereco: " + getEndereco() + "\n"
                 + "-----------------------------\n"
                 + "Senha: " + senha + "\n"
                 + "-----------------------------\n";

@@ -47,16 +47,24 @@ public class Paciente extends Pessoa{
     
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nId: " + getId());
-        sb.append("\nPaciente: " + getNome());
-        sb.append("\nCPF: " + getCpf());
-        sb.append("\nEndereco: " + getEndereco());
-        sb.append("\nTelefone: " + getTelefone());
-        sb.append("\nNome do Convenio: " + getNomeConvenio());
-        sb.append("\nNumero do Convenio: " + getNumeroConvenio());
-        sb.append("\nStatus do Paciente: " + getStatusAtual());
-        return sb.toString();
+        return "=============================\n"
+                + "PACIENTE #" + String.format("%03d", getId()) + "\n"
+                + "=============================\n"
+                + "Nome: " + getNome() + "\n"
+                + "-----------------------------\n"
+                + "CPF: " + getCpf() + "\n"
+                + "-----------------------------\n"
+                + "Endereço: " + getEndereco() + "\n"
+                + "-----------------------------\n"
+                + "Telefone: " + getTelefone() + "\n"
+                + "-----------------------------\n"
+                + "Status: " + statusAtual + "\n"
+                + "-----------------------------\n"
+                + "Numero Convenio: " + numeroConvenio + "\n"
+                + "-----------------------------\n"
+                + "Nome Convenio: " + nomeConvenio + "\n"
+                + "-----------------------------\n";
     }
+
     
 }

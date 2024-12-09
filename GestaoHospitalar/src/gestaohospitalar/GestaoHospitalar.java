@@ -55,6 +55,7 @@ public class GestaoHospitalar {
             System.out.println("2. Listar Medicos");
             System.out.println("3. Atualizar Medico");
             System.out.println("4. Deletar Medico");
+            System.out.println("5. Buscar por um Medico");
             System.out.print("Escolha uma opcao: ");
             int opcao = Console.lerInteiro();
 
@@ -74,6 +75,9 @@ public class GestaoHospitalar {
                 case 4:
                     gestaoMedico.deletarMedico();
                     break;
+                case 5:
+                    gestaoMedico.buscarMedicoById();
+                    break;
                 default:
                     System.out.println("Opcao Invalida, Digite novamente");
                     break;
@@ -91,6 +95,7 @@ public class GestaoHospitalar {
             System.out.println("2. Listar Pacientes");
             System.out.println("3. Atualizar Paciente");
             System.out.println("4. Deletar Paciente");
+            System.out.println("5. Buscar por um Paciente");
             System.out.println("Escolha uma opcao: ");
             int opcao = Console.lerInteiro();
 
@@ -110,6 +115,9 @@ public class GestaoHospitalar {
                 case 4:
                     gestaoPaciente.deletarPaciente();
                     break;
+                case 5:
+                    gestaoPaciente.buscarPacientePorId();
+                    break;
                 default:
                     System.out.println("Opcao Invalida, Digite novamente");
                     break;
@@ -127,6 +135,7 @@ public class GestaoHospitalar {
             System.out.println("2. Listar Consultas");
             System.out.println("3. Atualizar Consulta");
             System.out.println("4. Deletar Consulta");
+            System.out.println("5. Buscar por uma Consulta");
             System.out.println("Escolha uma opcao: ");
             int opcao = Console.lerInteiro();
 
@@ -145,6 +154,9 @@ public class GestaoHospitalar {
                     break;
                 case 4:
                     gestaoConsulta.deletarConsulta();
+                    break;
+                case 5:
+                    gestaoConsulta.buscarConsultaPorId();
                     break;
                 default:
                     System.out.println("Opcao Invalida, Digite novamente");

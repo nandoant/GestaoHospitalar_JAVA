@@ -230,5 +230,25 @@ public class GestaoMedico {
         }
         return null;
    }
+
+   public void buscarMedicoById() {
+        Console.clear();
+        System.out.println("=== Buscar Medico por ID ===");
+        System.out.print("Digite o ID do medico: ");
+        int id = Console.lerInteiro();
+        
+        Medico medico = buscarMedico(id);
+        
+        Console.clear();
+        System.out.println("=== Resultado da Busca ===");
+        if (medico != null) {
+            System.out.println(medico);
+        } else {
+            System.out.println("Medico nao encontrado");
+        }
+        
+        System.out.println("\nPressione qualquer tecla para continuar...");
+        scanner.nextLine();
+    }
 }
 

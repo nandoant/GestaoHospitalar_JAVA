@@ -96,6 +96,23 @@ public class GestaoPaciente {
         scanner.nextLine();
     }
 
+    public void buscarPacientePorId() {
+        Console.clear();
+        System.out.println("=== Buscar Paciente por ID ===");
+        System.out.print("Digite o ID do paciente: ");
+        int id = Console.lerInteiro();
+        
+        Paciente paciente = buscarPaciente(id);
+        if (paciente != null) {
+            System.out.println(paciente);
+        } else {
+            System.out.println("Paciente nao encontrado");
+        }
+        
+        System.out.println("Pressione qualquer tecla para continuar...");
+        scanner.nextLine();
+    }
+
     public Paciente buscarPaciente(int pacienteID) {
         for (Paciente paciente : pacientes) {
             if (paciente.getId() == pacienteID) {

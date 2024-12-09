@@ -186,4 +186,24 @@ public class GestaoConsulta {
         int pacienteId = Console.lerInteiro();
         return gestaoPaciente.buscarPaciente(pacienteId);
     }
+
+    public void buscarConsultaPorId() {
+        Console.clear();
+        System.out.println("=== Buscar Consulta por ID ===");
+        System.out.print("Digite o ID da consulta: ");
+        int id = Console.lerInteiro();
+        
+        Consulta consulta = buscarConsulta(id);
+        if (consulta != null) {
+            System.out.println("--------------------------------------------------------");
+            System.out.println("CONSULTA #" + String.format("%03d", consulta.getId()));
+            System.out.println("--------------------------------------------------------");
+            System.out.println(consulta.toString());
+        } else {
+            System.out.println("Consulta não encontrada.");
+        }
+        
+        System.out.println("\nPressione qualquer tecla para continuar...");
+        scanner.nextLine();
+    }
 }

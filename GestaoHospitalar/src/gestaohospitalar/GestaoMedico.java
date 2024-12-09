@@ -1,5 +1,6 @@
 package gestaohospitalar;
 
+import gestaohospitalar.Utils.ConsoleUI;
 import gestaohospitalar.model.Medico;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,45 +18,70 @@ public class GestaoMedico {
         Medico medico = new Medico(0, "Cardiologista", "123456", "123456", "123456", "Joao", "123456", "Rua 1", "123456");
         medicos.add(medico);
     }
-    
-  
 
-    public void cadastrarMedico() {
-        System.out.println("=== Cadastro de Medico ===");
-        Medico medico = registrarMedico();
-        if (medico != null) {
-            medico.setId(contador++);
-            this.medicos.add(medico);
-            System.out.println("Medico cadastrado com sucesso");
-        }
-    }
 
     public void listarMedicos() {
+        ConsoleUI.clear();
         System.out.println("=== Lista de Medicos ===");
+        exibirMedicos();
+        System.out.println("\nPressione qualquer tecla para continuar...");
+        scanner.nextLine();
+    }
+
+    private void exibirMedicos(){
         if (medicos.isEmpty()) {
             System.out.println("Nenhum medico cadastrado.");
         } else {
             for (Medico medico : medicos) {
                 System.out.println(medico);
-                System.out.println("-----------------------------");
             }
         }
     }
 
+    public void cadastrarMedico() {
+        ConsoleUI.clear();
+        System.out.println("=== Cadastro de Medico ===");
+        Medico medico = coletarDadosMedico(null);
+        medico.setId(contador++);
+        medicos.add(medico);
+
+        ConsoleUI.clear();
+        System.out.println("=== Cadastro de Medico ===");
+        System.out.println(medico);
+        System.out.println("Medico cadastrado com sucesso");
+        System.out.println("Pressione qualquer tecla para continuar...");
+        scanner.nextLine();
+    }
+    
+    private void modificarMedico(Medico medico) {
+        coletarDadosMedico(medico);
+    }
+
     public void atualizarMedico() {
+        ConsoleUI.clear();
         System.out.println("=== Atualizar Medico ===");
         System.out.print("Digite o ID do medico que deseja atualizar: ");
         int id = Integer.parseInt(scanner.nextLine());
         Medico medico = buscarMedico(id);
         if (medico != null) {
+            ConsoleUI.clear();
+            System.out.println("=== Atualizar Medico ===");
+            System.out.println(medico);
             modificarMedico(medico);
+
+            ConsoleUI.clear();
+            System.out.println("=== Atualizar Medico ===");
+            System.out.println(medico);
             System.out.println("Medico atualizado com sucesso");
+            System.out.println("Pressione qualquer tecla para continuar...");
+            scanner.nextLine();
         } else {
             System.out.println("Medico nao encontrado");
         }
     }
 
     public void deletarMedico() {
+        ConsoleUI.clear();
         System.out.println("=== Deletar Medico ===");
         System.out.print("Digite o ID do medico que deseja deletar: ");
         int id = Integer.parseInt(scanner.nextLine());
@@ -66,6 +92,8 @@ public class GestaoMedico {
         } else {
             System.out.println("Medico nao encontrado");
         }
+        System.out.println("Pressione qualquer tecla para continuar...");
+        scanner.nextLine();
     }
 
     public Medico buscarMedico(int medicoID) {
@@ -77,106 +105,94 @@ public class GestaoMedico {
         return null;
     }
 
-    private void modificarMedico(Medico medico) {
-        System.out.print("Digite o novo nome do medico (ou pressione Enter para manter o mesmo): ");
-        String nome = scanner.nextLine();
-        if (!nome.isEmpty()) {
-            medico.setNome(nome);
+    private Medico coletarDadosMedico(Medico medicoExistente) {
+        Medico medico = medicoExistente != null ? medicoExistente : new Medico();
+        String[] campos = {"nome", "CRM", "CTPS", "CPF", "especialidade", "telefone", "endereco", "senha"};
+        
+        for (String campo : campos) {
+            boolean valido = false;
+    
+            while (!valido) {
+                System.out.print("Digite o " + campo + " do medico" + (medicoExistente != null ? " (ou Enter para manter o mesmo)" : "") + ": ");
+                String valor = scanner.nextLine();
+    
+                try{
+                if (valor.isEmpty() && medicoExistente != null) {
+                    // Mantem o valor atual
+                    valido = true;
+                } else if (!valor.isEmpty() || medicoExistente == null) {
+                    switch (campo) {
+                        case "nome":
+                        case "especialidade":
+                        case "telefone":
+                        case "endereco":
+                        case "senha":
+                            setCampoMedico(medico, campo, valor);
+                            valido = true;
+                            break;
+                        case "CRM":
+                            if (validarCrm(valor)) {
+                                
+                                setCampoMedico(medico, campo, valor);
+                                valido = true;
+                            } else {
+                                System.out.println("CRM ja cadastrado. Tente novamente.");
+                            }
+                            break;
+                        case "CTPS":
+                            if (validarCtps(valor)) {
+                                setCampoMedico(medico, campo, valor);
+                                valido = true;
+                            } else {
+                                System.out.println("CTPS ja cadastrado. Tente novamente.");
+                            }
+                            break;
+                        case "CPF":
+                            if (validarCpf(valor)) {
+                                setCampoMedico(medico, campo, valor);
+                                valido = true;
+                            } else {
+                                System.out.println("CPF ja cadastrado. Tente novamente.");
+                            }
+                            break;
+                    }
+                }} catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
         }
-
-        System.out.print("Digite o novo CRM do medico (ou pressione Enter para manter o mesmo): ");
-        String crm = scanner.nextLine();
-        if (!crm.isEmpty() && validarCrm(crm)) {
-            medico.setCrm(crm);
-        } else if (!crm.isEmpty()) {
-            System.out.println("CRM ja cadastrado");
-        }
-
-        System.out.print("Digite o novo CTPS do medico (ou pressione Enter para manter o mesmo): ");
-        String ctps = scanner.nextLine();
-        if (!ctps.isEmpty() && validarCtps(ctps)) {
-            medico.setCtps(ctps);
-        } else if (!ctps.isEmpty()) {
-            System.out.println("CTPS ja cadastrado");
-        }
-
-        System.out.print("Digite o novo CPF do medico (ou pressione Enter para manter o mesmo): ");
-        String cpf = scanner.nextLine();
-        if (!cpf.isEmpty() && validarCpf(cpf)) {
-            medico.setCpf(cpf);
-        } else if (!cpf.isEmpty()) {
-            System.out.println("CPF ja cadastrado");
-        }
-
-        System.out.print("Digite a nova especialidade do medico (ou pressione Enter para manter a mesma): ");
-        String especialidade = scanner.nextLine();
-        if (!especialidade.isEmpty()) {
-            medico.setEspecialidade(especialidade);
-        }
-
-        System.out.print("Digite o novo telefone do medico (ou pressione Enter para manter o mesmo): ");
-        String telefone = scanner.nextLine();
-        if (!telefone.isEmpty()) {
-            medico.setTelefone(telefone);
-        }
-
-        System.out.print("Digite o novo endereco do medico (ou pressione Enter para manter o mesmo): ");
-        String endereco = scanner.nextLine();
-        if (!endereco.isEmpty()) {
-            medico.setEndereco(endereco);
-        }
-
-        System.out.print("Digite a nova senha do medico (ou pressione Enter para manter a mesma): ");
-        String senha = scanner.nextLine();
-        if (!senha.isEmpty()) {
-            medico.setSenha(senha);
-        }
+        return medico;
     }
 
-    private Medico registrarMedico() {
-        System.out.print("Digite o nome do medico: ");
-        String nome = scanner.nextLine();
-
-        System.out.print("Digite o CRM do medico: ");
-        String crm = scanner.nextLine();
-        if (!validarCrm(crm)) {
-            System.out.println("CRM ja cadastrado");
-            return null;
+    private void setCampoMedico(Medico medico, String campo, String valor) throws Exception {
+        switch (campo) {
+            case "nome":
+                medico.setNome(valor);
+                break;
+            case "CRM":
+                medico.setCrm(valor);
+                break;
+            case "CTPS":
+                medico.setCtps(valor);
+                break;
+            case "CPF":
+                medico.setCpf(valor);
+                break;
+            case "especialidade":
+                medico.setEspecialidade(valor);
+                break;
+            case "telefone":
+                medico.setTelefone(valor);
+                break;
+            case "endereco":
+                medico.setEndereco(valor);
+                break;
+            case "senha":
+                medico.setSenha(valor);
+                break;
         }
-
-        System.out.print("Digite o CTPS do medico: ");
-        String ctps = scanner.nextLine();
-        if (!validarCtps(ctps)) {
-            System.out.println("CTPS ja cadastrado");
-            return null;
-        }
-
-        System.out.print("Digite o CPF do medico: ");
-        String cpf = scanner.nextLine();
-        if (!validarCpf(cpf)) {
-            System.out.println("CPF ja cadastrado");
-            return null;
-        }
-
-        System.out.print("Digite a especialidade do medico: ");
-        String especialidade = scanner.nextLine();
-
-        System.out.print("Digite o telefone do medico: ");
-        String telefone = scanner.nextLine();
-
-        System.out.print("Digite o endereco do medico: ");
-        String endereco = scanner.nextLine();
-
-        System.out.print("Digite a senha do medico: ");
-        String senha = scanner.nextLine();
-
-        if (nome.isEmpty() || crm.isEmpty() || ctps.isEmpty() || cpf.isEmpty() || especialidade.isEmpty() || senha.isEmpty() || endereco.isEmpty()) {
-            System.out.println("Campos obrigatorios nao preenchidos");
-            return null;
-        }
-
-        return new Medico(0, especialidade, crm, ctps, senha, nome, cpf, endereco, telefone);
     }
+    
 
     private boolean validarCrm(String crm) {
         for (Medico medico : medicos) {

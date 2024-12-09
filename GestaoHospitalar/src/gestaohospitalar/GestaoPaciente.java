@@ -87,50 +87,53 @@ public class GestaoPaciente {
     }
     
     private void modificarPaciente(Paciente paciente) {
-        System.out.print("Digite o novo nome do paciente (ou pressione Enter para manter o mesmo): ");
-        String nome = scanner.nextLine();
-        if (!nome.isEmpty()) {
-            paciente.setNome(nome);
-        }
+        try{
+            System.out.print("Digite o novo nome do paciente (ou pressione Enter para manter o mesmo): ");
+            String nome = scanner.nextLine();
+            if (!nome.isEmpty()) {
+                paciente.setNome(nome);
+            }
 
-        System.out.print("Digite o novo CPF do paciente (ou pressione Enter para manter o mesmo): ");
-        String cpf = scanner.nextLine();
-        if (!cpf.isEmpty() && validarCpf(cpf)) {
-            paciente.setCpf(cpf);
-        } else if (!cpf.isEmpty()) {
-            System.out.println("CPF ja cadastrado");
-        }
+            System.out.print("Digite o novo CPF do paciente (ou pressione Enter para manter o mesmo): ");
+            String cpf = scanner.nextLine();
+            if (!cpf.isEmpty() && validarCpf(cpf)) {
+                paciente.setCpf(cpf);
+            } else if (!cpf.isEmpty()) {
+                System.out.println("CPF ja cadastrado");
+            }
 
-        System.out.print("Digite o novo endereco do paciente (ou pressione Enter para manter a mesma): ");
-        String endereco = scanner.nextLine();
-        if (!endereco.isEmpty()) {
-            paciente.setEndereco(endereco);
-        }
+            System.out.print("Digite o novo endereco do paciente (ou pressione Enter para manter a mesma): ");
+            String endereco = scanner.nextLine();
+            if (!endereco.isEmpty()) {
+                paciente.setEndereco(endereco);
+            }
 
-        System.out.print("Digite o novo telefone do paciente (ou pressione Enter para manter o mesmo): ");
-        String telefone = scanner.nextLine();
-        if (!telefone.isEmpty()) {
-            paciente.setTelefone(telefone);
-        }
+            System.out.print("Digite o novo telefone do paciente (ou pressione Enter para manter o mesmo): ");
+            String telefone = scanner.nextLine();
+            if (!telefone.isEmpty()) {
+                paciente.setTelefone(telefone);
+            }
 
-        System.out.print("Digite o novo numero do convenio do paciente (ou pressione Enter para manter o mesmo): ");
-        String numeroConvenio = scanner.nextLine();
-        if (!numeroConvenio.isEmpty()) {
-            paciente.setNumeroConvenio(numeroConvenio);
-        }
+            System.out.print("Digite o novo numero do convenio do paciente (ou pressione Enter para manter o mesmo): ");
+            String numeroConvenio = scanner.nextLine();
+            if (!numeroConvenio.isEmpty()) {
+                paciente.setNumeroConvenio(numeroConvenio);
+            }
 
-        System.out.print("Digite o novo nome do convenio do paciente (ou pressione Enter para manter a mesma): ");
-        String nomeConvenio = scanner.nextLine();
-        if (!nomeConvenio.isEmpty()) {
-            paciente.setNomeConvenio(nomeConvenio);
-        }
-        
-        System.out.println("Deseja alterar o status do paciente? (pressione S para confirmar)");
-        String res = scanner.nextLine().toUpperCase();
-        if(res.equalsIgnoreCase("S") || !res.isEmpty()){
-            atualizarStatus(paciente);
-        }
-        
+            System.out.print("Digite o novo nome do convenio do paciente (ou pressione Enter para manter a mesma): ");
+            String nomeConvenio = scanner.nextLine();
+            if (!nomeConvenio.isEmpty()) {
+                paciente.setNomeConvenio(nomeConvenio);
+            }
+            
+            System.out.println("Deseja alterar o status do paciente? (pressione S para confirmar)");
+            String res = scanner.nextLine().toUpperCase();
+            if(res.equalsIgnoreCase("S") || !res.isEmpty()){
+                atualizarStatus(paciente);
+            }
+        } catch (Exception e) {
+        System.out.println("Erro ao atualizar paciente: " + e.getMessage());
+    }
     }
 
     

@@ -7,8 +7,8 @@ Alunos: Fernando Antonio e Michely Serras. <br>
     <strong>⤷</strong> Verificar se a representação das classes condiz com o codigo
 [✔] Adicionar Paciente (no codigo)
 [✔] Adicionar Consulta (no codigo)
-[ ] Testar (no codigo)
-[ ] Melhorar a interação com o usuario em cada tela (no codigo)
+[✔] Melhorar a interação com o usuario em cada tela (no codigo)
+[ ] Testar
 </pre>
 ### Diagrama de Classes
 ![diagrama](https://github.com/nandoant/GestaoHospitalar_JAVA/blob/main-auxiliar/DiagramaDeClasse.png?raw=true)

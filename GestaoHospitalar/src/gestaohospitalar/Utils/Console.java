@@ -2,7 +2,7 @@ package gestaohospitalar.Utils;
 
 import java.util.Scanner;
 
-public class ConsoleUI {
+public class Console {
     public static void clear(){
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }

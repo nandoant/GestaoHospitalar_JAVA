@@ -1,6 +1,6 @@
 package gestaohospitalar;
 
-import gestaohospitalar.Utils.ConsoleUI;
+import gestaohospitalar.Utils.Console;
 import gestaohospitalar.model.Medico;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class GestaoMedico {
 
 
     public void listarMedicos() {
-        ConsoleUI.clear();
+        Console.clear();
         System.out.println("=== Lista de Medicos ===");
         exibirMedicos();
         System.out.println("\nPressione qualquer tecla para continuar...");
@@ -39,13 +39,13 @@ public class GestaoMedico {
     }
 
     public void cadastrarMedico() {
-        ConsoleUI.clear();
+        Console.clear();
         System.out.println("=== Cadastro de Medico ===");
         Medico medico = coletarDadosMedico(null);
         medico.setId(contador++);
         medicos.add(medico);
 
-        ConsoleUI.clear();
+        Console.clear();
         System.out.println("=== Cadastro de Medico ===");
         System.out.println(medico);
         System.out.println("Medico cadastrado com sucesso");
@@ -58,18 +58,18 @@ public class GestaoMedico {
     }
 
     public void atualizarMedico() {
-        ConsoleUI.clear();
+        Console.clear();
         System.out.println("=== Atualizar Medico ===");
         System.out.print("Digite o ID do medico que deseja atualizar: ");
-        int id = ConsoleUI.lerInteiro();
+        int id = Console.lerInteiro();
         Medico medico = buscarMedico(id);
         if (medico != null) {
-            ConsoleUI.clear();
+            Console.clear();
             System.out.println("=== Atualizar Medico ===");
             System.out.println(medico);
             modificarMedico(medico);
 
-            ConsoleUI.clear();
+            Console.clear();
             System.out.println("=== Atualizar Medico ===");
             System.out.println(medico);
             System.out.println("Medico atualizado com sucesso");
@@ -81,10 +81,10 @@ public class GestaoMedico {
     }
 
     public void deletarMedico() {
-        ConsoleUI.clear();
+        Console.clear();
         System.out.println("=== Deletar Medico ===");
         System.out.print("Digite o ID do medico que deseja deletar: ");
-        int id = ConsoleUI.lerInteiro();
+        int id = Console.lerInteiro();
         Medico medico = buscarMedico(id);
         if (medico != null) {
             medicos.remove(medico);

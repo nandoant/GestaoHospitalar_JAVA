@@ -2,7 +2,7 @@
 package gestaohospitalar;
 
 
-import gestaohospitalar.Utils.ConsoleUI;
+import gestaohospitalar.Utils.Console;
 
 public class GestaoHospitalar {
     private static GestaoMedico gestaoMedico = new GestaoMedico();
@@ -16,14 +16,14 @@ public class GestaoHospitalar {
     private static void exibirMenu() {
         boolean sair = false;
         while(!sair){
-            ConsoleUI.clear();
+            Console.clear();
             System.out.println("=== Menu Gestao Hospitalar ===");
             System.out.println("0. Encerrar Programa");
             System.out.println("1. Medico");
             System.out.println("2. Paciente");
             System.out.println("3. Consulta");
             System.out.println("Escolha uma opcao: ");
-            int opcao = ConsoleUI.lerInteiro();
+            int opcao = Console.lerInteiro();
 
             switch (opcao) {
                 case 0:
@@ -48,7 +48,7 @@ public class GestaoHospitalar {
     private static void exibirMedico(){
         boolean sair = false;
         while (!sair) {
-            ConsoleUI.clear();
+            Console.clear();
             System.out.println("\n=== Menu Medico ===");
             System.out.println("0. Voltar");
             System.out.println("1. Cadastrar Medico");
@@ -56,7 +56,7 @@ public class GestaoHospitalar {
             System.out.println("3. Atualizar Medico");
             System.out.println("4. Deletar Medico");
             System.out.print("Escolha uma opcao: ");
-            int opcao = ConsoleUI.lerInteiro();
+            int opcao = Console.lerInteiro();
 
             switch (opcao) {
                 case 0:
@@ -84,7 +84,7 @@ public class GestaoHospitalar {
     private static void exibirPaciente(){
         boolean sair = false;
         while (!sair) {
-            ConsoleUI.clear();
+            Console.clear();
             System.out.println("\n=== Menu Paciente ===");
             System.out.println("0. Voltar");
             System.out.println("1. Cadastrar Paciente");
@@ -92,7 +92,7 @@ public class GestaoHospitalar {
             System.out.println("3. Atualizar Paciente");
             System.out.println("4. Deletar Paciente");
             System.out.println("Escolha uma opcao: ");
-            int opcao = ConsoleUI.lerInteiro();
+            int opcao = Console.lerInteiro();
 
             switch (opcao) {
                 case 0:
@@ -120,7 +120,7 @@ public class GestaoHospitalar {
     private static void exibirConsulta(){
         boolean sair = false;
         while (!sair) {
-            ConsoleUI.clear();
+            Console.clear();
             System.out.println("\n=== Menu Consulta ===");
             System.out.println("0. Voltar");
             System.out.println("1. Cadastrar Consulta");
@@ -128,7 +128,7 @@ public class GestaoHospitalar {
             System.out.println("3. Atualizar Consulta");
             System.out.println("4. Deletar Consulta");
             System.out.println("Escolha uma opcao: ");
-            int opcao = ConsoleUI.lerInteiro();
+            int opcao = Console.lerInteiro();
 
             switch (opcao) {
                 case 0:

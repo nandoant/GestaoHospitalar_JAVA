@@ -1,6 +1,6 @@
 package gestaohospitalar;
 
-import gestaohospitalar.Utils.ConsoleUI;
+import gestaohospitalar.Utils.Console;
 import gestaohospitalar.model.Paciente;
 
 import gestaohospitalar.model.PacienteStatus;
@@ -53,7 +53,7 @@ public class GestaoPaciente {
     public void atualizarPaciente() {
           System.out.println("=== Atualizar Paciente ===");
           System.out.print("Digite o ID do paciente que deseja atualizar: ");
-          int id = ConsoleUI.lerInteiro();
+          int id = Console.lerInteiro();
           Paciente paciente = buscarPaciente(id);
           if (paciente != null) {
               modificarPaciente(paciente);
@@ -77,7 +77,7 @@ public class GestaoPaciente {
     public void deletarPaciente() {
         System.out.println("=== Deletar Paciente ===");
         System.out.print("Digite o ID do paciente que deseja deletar: ");
-        int id = ConsoleUI.lerInteiro();
+        int id = Console.lerInteiro();
         Paciente paciente = buscarPaciente(id);
         if (paciente != null) {
             pacientes.remove(paciente);

@@ -1,5 +1,6 @@
 package gestaohospitalar;
 
+import gestaohospitalar.Utils.Console;
 import gestaohospitalar.model.Consulta;
 import gestaohospitalar.model.Medico;
 import gestaohospitalar.model.Paciente;
@@ -29,16 +30,25 @@ public class GestaoConsulta {
     }
 
     public void cadastrarConsulta() {
+        Console.clear();
         System.out.println("=== Cadastro de Consulta ===");
         Consulta consulta = registrarConsulta();
+
         if (consulta != null) {
             consulta.setId(contador++);
             this.consultas.add(consulta);
+
+            Console.clear();
+            System.out.println("=== Cadastro de Consulta ===");
+            System.out.println(consulta);
             System.out.println("Consulta cadastrada com sucesso");
+            System.out.println("Pressione qualquer tecla para continuar...");
+            scanner.nextLine();
         }
     }
 
     public void listarConsultas() {
+        Console.clear();  
         System.out.println("=== Lista de Consultas ===");
         if (consultas.isEmpty()) {
             System.out.println("Nenhuma consulta cadastrada.");
@@ -50,25 +60,45 @@ public class GestaoConsulta {
                 System.out.println(consulta.toString());
             }
         }
+        System.out.println("\nPressione qualquer tecla para continuar...");
+        scanner.nextLine();
     }
 
     public void atualizarConsulta() {
+        Console.clear();
         System.out.println("=== Atualizar Consulta ===");
         System.out.print("Digite o ID da consulta que deseja atualizar: ");
-        int id = Integer.parseInt(scanner.nextLine());
+        int id = Console.lerInteiro();
         Consulta consulta = buscarConsulta(id);
+        
         if (consulta != null) {
+            System.out.println(consulta);
+            try{
             modificarConsulta(consulta);
+
+            Console.clear();
+            System.out.println("=== Atualizar Consulta ===");
+            System.out.println(consulta);
+
             System.out.println("Consulta atualizada com sucesso");
+            System.out.println("Pressione qualquer tecla para continuar...");
+            scanner.nextLine();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("Pressione qualquer tecla para continuar...");
+                scanner.nextLine();
+            }
         } else {
             System.out.println("Consulta nao encontrada");
+            System.out.println("Pressione qualquer tecla para continuar...");
+            scanner.nextLine();
         }
     }
 
     public void deletarConsulta() {
         System.out.println("=== Deletar Consulta ===");
         System.out.print("Digite o ID da consulta que deseja deletar: ");
-        int id = Integer.parseInt(scanner.nextLine());
+        int id = Console.lerInteiro();
         Consulta consulta = buscarConsulta(id);
         if (consulta != null) {
             consultas.remove(consulta);
@@ -76,6 +106,8 @@ public class GestaoConsulta {
         } else {
             System.out.println("Consulta nao encontrada");
         }
+        System.out.println("Pressione qualquer tecla para continuar...");
+        scanner.nextLine();
     }
 
     private Consulta buscarConsulta(int consultaID) {
@@ -87,7 +119,7 @@ public class GestaoConsulta {
         return null;
     }
 
-    private void modificarConsulta(Consulta consulta) {
+    private void modificarConsulta(Consulta consulta) throws Exception {
         System.out.print("Digite a nova descricao da consulta (ou pressione Enter para manter a mesma): ");
         String descricao = scanner.nextLine();
         if (!descricao.isEmpty()) {
@@ -99,7 +131,10 @@ public class GestaoConsulta {
         if (alterarMedico.equalsIgnoreCase("s")) {
             Medico medico = selecionarMedico();
             if (medico != null) {
+                //gestaoMedico.buscarMedico(contador)
                 consulta.setMedico(medico);
+            } else {
+                throw new Exception("\nMedico nao encontrado. O medico da consulta nao foi alterado.\n");
             }
         }
 
@@ -110,6 +145,8 @@ public class GestaoConsulta {
             if (paciente != null) {
                 consulta.setPaciente(paciente);
             }
+        } else {
+            throw new Exception("\nPaciente nao encontrado. O paciente da consulta nao foi alterado.\n");
         }
     }
 
@@ -120,32 +157,33 @@ public class GestaoConsulta {
         Medico medico = selecionarMedico();
         if (medico == null) {
             System.out.println("Medico nao encontrado. Cadastro de consulta cancelado.");
+            System.out.println("Pressione qualquer tecla para continuar...");
+            scanner.nextLine();
             return null;
         }
 
         Paciente paciente = selecionarPaciente();
         if (paciente == null) {
             System.out.println("Paciente nao encontrado. Cadastro de consulta cancelado.");
+            System.out.println("Pressione qualquer tecla para continuar...");
+            scanner.nextLine();
             return null;
         }
 
-        Medico novoMedico = medico;
-        Paciente novoPaciente = paciente;
-
-        return new Consulta(0, novoPaciente, novoMedico, descricao);
+        return new Consulta(0, paciente, medico, descricao);
     }
 
     private Medico selecionarMedico() {
-        gestaoMedico.listarMedicos();
+        gestaoMedico.exibirMedicos();
         System.out.print("Digite o ID do medico: ");
-        int medicoId = Integer.parseInt(scanner.nextLine());
+        int medicoId = Console.lerInteiro();
         return gestaoMedico.buscarMedico(medicoId);
     }
 
     private Paciente selecionarPaciente() {
         gestaoPaciente.listarPacientes();
         System.out.print("Digite o ID do paciente: ");
-        int pacienteId = Integer.parseInt(scanner.nextLine());
+        int pacienteId = Console.lerInteiro();
         return gestaoPaciente.buscarPaciente(pacienteId);
     }
 }

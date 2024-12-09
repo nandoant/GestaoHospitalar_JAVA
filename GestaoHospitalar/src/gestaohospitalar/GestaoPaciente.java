@@ -38,7 +38,7 @@ public class GestaoPaciente {
     }
     
     public void listarPacientes() {
-        System.out.println("=== Lista de Medicos ===");
+        System.out.println("=== Lista de Pacientes ===");
         if (pacientes.isEmpty()) {
             System.out.println("Nenhum paciente cadastrado.");
         } else {

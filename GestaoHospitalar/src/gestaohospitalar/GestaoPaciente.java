@@ -152,7 +152,7 @@ public class GestaoPaciente {
                 paciente.setTelefone(telefone);
             }
 
-            System.out.print("Digite o novo número do convenio do paciente (ou pressione Enter para manter o mesmo): ");
+            System.out.print("Digite o novo numero do convenio do paciente (ou pressione Enter para manter o mesmo): ");
             String numeroConvenio = scanner.nextLine();
             if (!numeroConvenio.isEmpty()) {
                 paciente.setNumeroConvenio(numeroConvenio);
@@ -190,7 +190,7 @@ public class GestaoPaciente {
         System.out.print("Digite o nome do convenio do paciente: ");
         nomeConvenio = scanner.nextLine();
 
-        System.out.print("Digite o número do convenio do paciente: ");
+        System.out.print("Digite o numero do convenio do paciente: ");
         numeroConvenio = scanner.nextLine();
 
         System.out.print("Digite o telefone do paciente: ");
@@ -218,19 +218,19 @@ public class GestaoPaciente {
     }
 
     private void atualizarStatus(Paciente paciente) {
-        System.out.print("Informe o CRM do médico: ");
+        System.out.print("Informe o CRM do medico: ");
         String crm = scanner.nextLine();
-        System.out.print("Informe a senha do médico: ");
+        System.out.print("Informe a senha do medico: ");
         String senha = scanner.nextLine();
 
         var medicoEncontrado = medico.validarMedico(crm, senha);
 
-        System.out.println("Verificando Médico...");
+        System.out.println("Verificando Medico...");
 
         if (medicoEncontrado == null) {
             System.out.println("Acesso negado!");
         } else {
-            System.out.println("Médico autenticado!\n");
+            System.out.println("Medico autenticado!\n");
             System.out.println("STATUS:");
             System.out.println("\t1 - ENTRADA");
             System.out.println("\t2 - TRATAMENTO_CLINICO_GERAL");

@@ -61,7 +61,7 @@ public class GestaoMedico {
         ConsoleUI.clear();
         System.out.println("=== Atualizar Medico ===");
         System.out.print("Digite o ID do medico que deseja atualizar: ");
-        int id = Integer.parseInt(scanner.nextLine());
+        int id = ConsoleUI.lerInteiro();
         Medico medico = buscarMedico(id);
         if (medico != null) {
             ConsoleUI.clear();
@@ -84,7 +84,7 @@ public class GestaoMedico {
         ConsoleUI.clear();
         System.out.println("=== Deletar Medico ===");
         System.out.print("Digite o ID do medico que deseja deletar: ");
-        int id = Integer.parseInt(scanner.nextLine());
+        int id = ConsoleUI.lerInteiro();
         Medico medico = buscarMedico(id);
         if (medico != null) {
             medicos.remove(medico);

@@ -1,7 +1,6 @@
 
 package gestaohospitalar;
 
-import java.util.Scanner;
 
 import gestaohospitalar.Utils.ConsoleUI;
 
@@ -9,7 +8,6 @@ public class GestaoHospitalar {
     private static GestaoMedico gestaoMedico = new GestaoMedico();
     private static GestaoPaciente gestaoPaciente = new GestaoPaciente(gestaoMedico);
     private static GestaoConsulta gestaoConsulta = new GestaoConsulta(gestaoMedico, gestaoPaciente);
-    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         exibirMenu();
@@ -25,7 +23,7 @@ public class GestaoHospitalar {
             System.out.println("2. Paciente");
             System.out.println("3. Consulta");
             System.out.println("Escolha uma opcao: ");
-            int opcao = scanner.nextInt();
+            int opcao = ConsoleUI.lerInteiro();
 
             switch (opcao) {
                 case 0:
@@ -58,7 +56,7 @@ public class GestaoHospitalar {
             System.out.println("3. Atualizar Medico");
             System.out.println("4. Deletar Medico");
             System.out.print("Escolha uma opcao: ");
-            int opcao = scanner.nextInt();
+            int opcao = ConsoleUI.lerInteiro();
 
             switch (opcao) {
                 case 0:
@@ -94,7 +92,7 @@ public class GestaoHospitalar {
             System.out.println("3. Atualizar Paciente");
             System.out.println("4. Deletar Paciente");
             System.out.println("Escolha uma opcao: ");
-            int opcao = scanner.nextInt();
+            int opcao = ConsoleUI.lerInteiro();
 
             switch (opcao) {
                 case 0:
@@ -130,7 +128,7 @@ public class GestaoHospitalar {
             System.out.println("3. Atualizar Consulta");
             System.out.println("4. Deletar Consulta");
             System.out.println("Escolha uma opcao: ");
-            int opcao = scanner.nextInt();
+            int opcao = ConsoleUI.lerInteiro();
 
             switch (opcao) {
                 case 0:

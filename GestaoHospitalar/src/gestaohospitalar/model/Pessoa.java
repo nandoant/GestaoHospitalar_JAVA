@@ -14,6 +14,10 @@ public abstract class Pessoa {
         this.endereco = endereco;
         this.telefone = telefone;
     }
+
+    public Pessoa(){
+        
+    }
     
     public int getId(){
         return id;

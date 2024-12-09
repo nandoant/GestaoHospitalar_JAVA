@@ -5,9 +5,10 @@ Alunos: Fernando Antonio e Michely Serras. <br>
 [ ] Atualizar o diagrama de classes
     <strong>⤷</strong> Verificar se os relacionamentos estão corretos
     <strong>⤷</strong> Verificar se a representação das classes condiz com o codigo
-[ ] Adicionar Paciente (no codigo)
-[ ] Adicionar Consulta (no codigo)
+[✔] Adicionar Paciente (no codigo)
+[✔] Adicionar Consulta (no codigo)
 [ ] Testar (no codigo)
+[ ] Melhorar a interação com o usuario em cada tela (no codigo)
 </pre>
 ### Diagrama de Classes
 ![diagrama](https://github.com/nandoant/GestaoHospitalar_JAVA/blob/main/GestaoHospitalar.png?raw=true)

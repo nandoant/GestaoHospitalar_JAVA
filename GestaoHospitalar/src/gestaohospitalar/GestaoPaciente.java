@@ -38,7 +38,7 @@ public class GestaoPaciente {
             System.out.println(paciente);
             System.out.println("Paciente cadastrado com sucesso");
         } else {
-            System.out.println("Falha ao cadastrar paciente. Campos obrigatórios não preenchidos ou CPF já cadastrado.");
+            System.out.println("Falha ao cadastrar paciente. Campos obrigatorios nao preenchidos ou CPF ja cadastrado.");
         }
         System.out.println("Pressione qualquer tecla para continuar...");
         scanner.nextLine();
@@ -74,7 +74,7 @@ public class GestaoPaciente {
             System.out.println(paciente);
             System.out.println("Paciente atualizado com sucesso");
         } else {
-            System.out.println("Paciente não encontrado");
+            System.out.println("Paciente nao encontrado");
         }
         System.out.println("Pressione qualquer tecla para continuar...");
         scanner.nextLine();
@@ -90,7 +90,7 @@ public class GestaoPaciente {
             pacientes.remove(paciente);
             System.out.println("Paciente deletado com sucesso");
         } else {
-            System.out.println("Paciente não encontrado");
+            System.out.println("Paciente nao encontrado");
         }
         System.out.println("Pressione qualquer tecla para continuar...");
         scanner.nextLine();
@@ -119,11 +119,11 @@ public class GestaoPaciente {
                 if (validarCpf(cpf)) {
                     paciente.setCpf(cpf);
                 } else {
-                    System.out.println("CPF já cadastrado. CPF não alterado.");
+                    System.out.println("CPF ja cadastrado. CPF nao alterado.");
                 }
             }
 
-            System.out.print("Digite o novo endereço do paciente (ou pressione Enter para manter o mesmo): ");
+            System.out.print("Digite o novo endereco do paciente (ou pressione Enter para manter o mesmo): ");
             String endereco = scanner.nextLine();
             if (!endereco.isEmpty()) {
                 paciente.setEndereco(endereco);
@@ -135,13 +135,13 @@ public class GestaoPaciente {
                 paciente.setTelefone(telefone);
             }
 
-            System.out.print("Digite o novo número do convênio do paciente (ou pressione Enter para manter o mesmo): ");
+            System.out.print("Digite o novo número do convenio do paciente (ou pressione Enter para manter o mesmo): ");
             String numeroConvenio = scanner.nextLine();
             if (!numeroConvenio.isEmpty()) {
                 paciente.setNumeroConvenio(numeroConvenio);
             }
 
-            System.out.print("Digite o novo nome do convênio do paciente (ou pressione Enter para manter o mesmo): ");
+            System.out.print("Digite o novo nome do convenio do paciente (ou pressione Enter para manter o mesmo): ");
             String nomeConvenio = scanner.nextLine();
             if (!nomeConvenio.isEmpty()) {
                 paciente.setNomeConvenio(nomeConvenio);
@@ -170,16 +170,16 @@ public class GestaoPaciente {
             return null;
         }
 
-        System.out.print("Digite o nome do convênio do paciente: ");
+        System.out.print("Digite o nome do convenio do paciente: ");
         nomeConvenio = scanner.nextLine();
 
-        System.out.print("Digite o número do convênio do paciente: ");
+        System.out.print("Digite o número do convenio do paciente: ");
         numeroConvenio = scanner.nextLine();
 
         System.out.print("Digite o telefone do paciente: ");
         telefone = scanner.nextLine();
 
-        System.out.print("Digite o endereço do paciente: ");
+        System.out.print("Digite o endereco do paciente: ");
         endereco = scanner.nextLine();
 
         if (nome.isEmpty() || cpf.isEmpty() || nomeConvenio.isEmpty() || numeroConvenio.isEmpty() || telefone.isEmpty() || endereco.isEmpty()) {
@@ -193,7 +193,7 @@ public class GestaoPaciente {
     private boolean validarCpf(String cpf) {
         for (Paciente paciente : pacientes) {
             if (paciente.getCpf().equals(cpf)) {
-                System.out.println("CPF já cadastrado. Operação cancelada.");
+                System.out.println("CPF ja cadastrado. Operacao cancelada.");
                 return false;
             }
         }
@@ -246,11 +246,11 @@ public class GestaoPaciente {
                         paciente.setStatusAtual(PacienteStatus.ALTA_CLINICA);
                         break;
                     default:
-                        System.out.println("Opção inválida! Status não alterado.");
+                        System.out.println("Opcao invalida! Status nao alterado.");
                         break;
                 }
             } else {
-                System.out.println("Nenhuma alteração de status foi feita.");
+                System.out.println("Nenhuma alteracao de status foi feita.");
             }
         }
     }

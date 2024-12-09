@@ -87,7 +87,6 @@ public class Medico extends Pessoa{
                 + "-----------------------------\n"
                 + "Senha: " + senha + "\n"
                 + "-----------------------------\n";
-
     }
 
 }

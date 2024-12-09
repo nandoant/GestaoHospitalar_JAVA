@@ -24,6 +24,8 @@ public class Medico extends Pessoa{
     }
 
     public void setEspecialidade(String especialidade) {
+        validacaoSimples(especialidade, "Especialidade");
+
         this.especialidade = especialidade;
     }
 
@@ -32,6 +34,7 @@ public class Medico extends Pessoa{
     }
 
     public void setCtps(String ctps) {
+        validacaoSimples(ctps, "CTPS");
         this.ctps = ctps;
     }
 
@@ -40,6 +43,7 @@ public class Medico extends Pessoa{
     }
 
     public void setCrm(String crm) {
+        validacaoSimples(crm, "CRM");
         this.crm = crm;
     }
 
@@ -48,19 +52,20 @@ public class Medico extends Pessoa{
     }
 
     public void setSenha(String senha) {
+        validacaoSimples(senha, "Senha");
         this.senha = senha;
     }
     
-    //Fazer um toString que exiba nesse formato abaixo, porem mostrando todos os dados dele:
-    /*
-    ============================
-    MEDICO #001 
-    ============================
-    Nome: Fernando      
-    -----------------------------
-    Especialidade: Cardiologista          
-    -----------------------------
-     */
+    private void validacaoSimples(String valor, String campo){
+        valor = valor.trim();
+        if(valor.isEmpty()){
+            throw new Error(campo + " não pode ser vazio");
+        }
+        if(valor.length() < 3){
+            throw new Error(campo + " deve ter no minimo 3 caracteres");
+        }
+    }
+    
     @Override
     public String toString() {
         return "=============================\n"

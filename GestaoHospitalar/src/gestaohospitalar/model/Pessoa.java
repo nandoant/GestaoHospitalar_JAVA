@@ -16,7 +16,7 @@ public abstract class Pessoa {
     }
 
     public Pessoa(){
-        
+
     }
     
     public int getId(){
@@ -32,6 +32,7 @@ public abstract class Pessoa {
     }
 
     public void setNome(String nome) {
+        validacaoSimples(nome, nome);
         this.nome = nome;
     }
 
@@ -40,6 +41,7 @@ public abstract class Pessoa {
     }
 
     public void setCpf(String cpf) {
+        validacaoSimples(cpf, cpf);
         this.cpf = cpf;
     }
 
@@ -48,6 +50,7 @@ public abstract class Pessoa {
     }
 
     public void setEndereco(String endereco) {
+        validacaoSimples(endereco, endereco);
         this.endereco = endereco;
     }
 
@@ -56,7 +59,18 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(String telefone) {
+        validacaoSimples(telefone, telefone);
         this.telefone = telefone;
+    }
+
+    private void validacaoSimples(String valor, String campo){
+        valor = valor.trim();
+        if(valor.isEmpty()){
+            throw new Error(campo + " não pode ser vazio");
+        }
+        if(valor.length() < 3){
+            throw new Error(campo + " deve ter no minimo 3 caracteres");
+        }
     }
     
     public void exibir(){

@@ -3,13 +3,17 @@ package gestaohospitalar;
 
 
 import gestaohospitalar.Utils.Console;
+import gestaohospitalar.model.Consulta;
 import gestaohospitalar.model.Medico;
 import gestaohospitalar.model.Paciente;
+import gestaohospitalar.model.PacienteStatus;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class GestaoHospitalar {
     private static GestaoMedico gestaoMedico = new GestaoMedico();
-    private static GestaoPaciente gestaoPaciente = new GestaoPaciente(gestaoMedico);
+    private static GestaoPaciente gestaoPaciente = new GestaoPaciente();
     private static GestaoConsulta gestaoConsulta = new GestaoConsulta(gestaoMedico, gestaoPaciente);
     private static Scanner scanner = new Scanner(System.in);
 
@@ -114,7 +118,7 @@ public class GestaoHospitalar {
                     gestaoPaciente.listarPacientes();
                     break;
                 case 3:
-                    gestaoPaciente.atualizarPaciente();
+                    atualizarPaciente();
                     break;
                 case 4:
                     deletarPaciente();
@@ -207,5 +211,129 @@ public class GestaoHospitalar {
         }
         System.out.println("Pressione qualquer tecla para continuar...");
         scanner.nextLine();
+    }
+
+    private static void atualizarPaciente() {
+        Console.clear();
+        System.out.println("=== Atualizar Paciente ===");
+        System.out.print("Digite o ID do paciente que deseja atualizar: ");
+        int id = Console.lerInteiro();
+        Paciente paciente = gestaoPaciente.buscarPaciente(id);
+        
+        if (paciente != null) {
+            Console.clear();
+            System.out.println("=== Atualizar Paciente ===");
+            System.out.println(paciente);
+            
+            
+            gestaoPaciente.modificarPacienteInfo(paciente);
+            
+            
+            System.out.print("Deseja alterar o status do paciente? (pressione S para confirmar): ");
+            String res = scanner.nextLine().toUpperCase();
+            if (res.equalsIgnoreCase("S")) {
+                atualizarStatusPaciente(paciente);
+            }
+            
+            Console.clear();
+            System.out.println("=== Atualizar Paciente ===");
+            System.out.println(paciente);
+            System.out.println("Paciente atualizado com sucesso");
+        } else {
+            System.out.println("Paciente nao encontrado");
+        }
+        
+        System.out.println("Pressione qualquer tecla para continuar...");
+        scanner.nextLine();
+    }
+
+    private static void atualizarStatusPaciente(Paciente paciente) {
+        System.out.print("Informe o CRM do medico: ");
+        String crm = scanner.nextLine();
+        System.out.print("Informe a senha do medico: ");
+        String senha = scanner.nextLine();
+
+        var medicoEncontrado = gestaoMedico.validarMedico(crm, senha);
+        if (medicoEncontrado == null) {
+            System.out.println("Acesso negado!");
+            return;
+        }
+
+        if (paciente.getStatusAtual() == null) {
+            List<Consulta> consultasDisponiveis = gestaoConsulta.getConsultasSemStatus(paciente);
+            if (!consultasDisponiveis.isEmpty()) {
+                System.out.println("Consultacoes disponiveis para iniciar:");
+                consultasDisponiveis.forEach(System.out::println);
+                System.out.print("Digite o ID da consulta para iniciar: ");
+                int consultaId = Console.lerInteiro();
+                
+                Consulta consulta = gestaoConsulta.buscarConsulta(consultaId);
+                if (consulta != null) {
+                    paciente.setStatusAtual(PacienteStatus.ENTRADA);
+                    consulta.setStatusConsulta(PacienteStatus.ENTRADA);
+                    //melhorar
+                    System.out.println("\nPaciente deu entrada com sucesso!");
+                    System.out.println("Paciente: " + paciente.getNome());
+                    System.out.println("Consulta #" + consulta.getId());
+                    System.out.println("Medico responsavel: Dr(a). " + consulta.getMedico().getNome());
+                    System.out.println("Pressione qualquer tecla para continuar...");
+                    scanner.nextLine();
+
+                }
+            }
+        } else {
+            Consulta consultaAtiva = gestaoConsulta.getConsultaAtiva(paciente);
+            if (consultaAtiva != null) {
+                exibirOpcoesStatus();
+                int opcao = Console.lerInteiro();
+                PacienteStatus novoStatus = converterOpcaoParaStatus(opcao);
+                
+                if (novoStatus != null) {
+                    if (novoStatus == PacienteStatus.ALTA_CLINICA) {
+                        paciente.setStatusAtual(null);
+                        consultaAtiva.setStatusConsulta(PacienteStatus.ALTA_CLINICA);
+                        System.out.println("\nAlta medica concedida!");
+                        System.out.println("Paciente: " + paciente.getNome());
+                        System.out.println("Consulta #" + consultaAtiva.getId() + " finalizada");
+                        System.out.println("Medico responsavel: Dr(a). " + consultaAtiva.getMedico().getNome());
+                    } else {
+                        paciente.setStatusAtual(novoStatus);
+                        consultaAtiva.setStatusConsulta(novoStatus);
+                        System.out.println("\nStatus atualizado com sucesso!");
+                        System.out.println("Paciente: " + paciente.getNome());
+                        System.out.println("Novo status: " + novoStatus);
+                        System.out.println("Consulta #" + consultaAtiva.getId());
+                        System.out.println("Medico responsavel: Dr(a). " + consultaAtiva.getMedico().getNome());
+                        System.out.println("Pressione qualquer tecla para continuar...");
+                        scanner.nextLine();
+                    }
+                }
+            } else {
+                System.out.println("Nao ha consulta ativa para este paciente.");
+            }
+        }
+    }
+
+    private static void exibirOpcoesStatus() {
+        System.out.println("STATUS:");
+        System.out.println("\t1 - ENTRADA");
+        System.out.println("\t2 - TRATAMENTO_CLINICO_GERAL");
+        System.out.println("\t3 - PREPARACAO_PRE_CIRURGICA");
+        System.out.println("\t4 - CIRURGIA");
+        System.out.println("\t5 - POS_CIRURGIA");
+        System.out.println("\t6 - ALTA_CLINICA");
+        System.out.print("Digite o numero do novo status: ");
+    }
+    
+    private static PacienteStatus converterOpcaoParaStatus(int opcao) {
+        switch (opcao) {
+            case 1: return PacienteStatus.ENTRADA;
+            case 2: return PacienteStatus.TRATAMENTO_CLINICO_GERAL;
+            case 3: return PacienteStatus.PREPARACAO_PRE_CIRURGICA;
+            case 4: return PacienteStatus.CIRURGIA;
+            case 5: return PacienteStatus.POS_CIRURGIA;
+            case 6: return PacienteStatus.ALTA_CLINICA;
+            default: return null;
+        }
     }
 }

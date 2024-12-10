@@ -9,6 +9,7 @@ import gestaohospitalar.model.PacienteStatus;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class GestaoConsulta {
     private List<Consulta> consultas;
@@ -24,7 +25,7 @@ public class GestaoConsulta {
         this.gestaoPaciente = gestaoPaciente;
         //adcionar uma consulta para teste
         Medico medico = new Medico(0, "Cardiologista", "123456", "123456", "123456", "Joao", "123456", "Rua 1", "123456");
-        Paciente paciente = new Paciente(PacienteStatus.ENTRADA, "123456", "Unimed", 0, "Maria", "123456", "Rua 1", "123456");
+        Paciente paciente = new Paciente( "123456", "Unimed", 0, "Maria", "123456", "Rua 1", "123456");
         Consulta consulta = new Consulta(0, paciente, medico, "Consulta de rotina");
         consultas.add(consulta);
     }
@@ -54,9 +55,6 @@ public class GestaoConsulta {
             System.out.println("Nenhuma consulta cadastrada.");
         } else {
             for (Consulta consulta : consultas) {
-                System.out.println("--------------------------------------------------------");
-                System.out.println("CONSULTA #" + String.format("%03d", consulta.getId()));
-                System.out.println("--------------------------------------------------------");
                 System.out.println(consulta.toString());
             }
         }
@@ -126,7 +124,7 @@ public class GestaoConsulta {
         return false;
     }
 
-    private Consulta buscarConsulta(int consultaID) {
+    public Consulta buscarConsulta(int consultaID) {
         for (Consulta consulta : consultas) {
             if (consulta.getId() == consultaID) {
                 return consulta;
@@ -211,15 +209,35 @@ public class GestaoConsulta {
         
         Consulta consulta = buscarConsulta(id);
         if (consulta != null) {
-            System.out.println("--------------------------------------------------------");
-            System.out.println("CONSULTA #" + String.format("%03d", consulta.getId()));
-            System.out.println("--------------------------------------------------------");
             System.out.println(consulta.toString());
         } else {
-            System.out.println("Consulta não encontrada.");
+            System.out.println("Consulta nao encontrada.");
         }
         
         System.out.println("\nPressione qualquer tecla para continuar...");
         scanner.nextLine();
     }
+
+    public void atualizarStatusConsulta(Paciente paciente, PacienteStatus novoStatus) {
+        Consulta consultaAtiva = getConsultaAtiva(paciente);
+        if (consultaAtiva != null) {
+            consultaAtiva.setStatusConsulta(novoStatus);
+        }
+    }
+
+    public List<Consulta> getConsultasSemStatus(Paciente paciente) {
+        return consultas.stream()
+            .filter(c -> c.getPaciente().equals(paciente) && c.getStatusConsulta() == null)
+            .collect(Collectors.toList());
+    }
+
+    public Consulta getConsultaAtiva(Paciente paciente) {
+        return consultas.stream()
+            .filter(c -> c.getPaciente().equals(paciente) && 
+                    c.getStatusConsulta() != null && 
+                    c.getStatusConsulta() != PacienteStatus.ALTA_CLINICA)
+            .findFirst()
+            .orElse(null);
+    }
+
 }

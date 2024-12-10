@@ -5,12 +5,14 @@ public class Consulta {
     Paciente paciente;
     Medico medico;
     String descricao;
+    PacienteStatus statusConsulta;
 
     public Consulta(int id, Paciente paciente, Medico medico, String descricao) {
         this.id = id;
         this.paciente = paciente;
         this.medico = medico;
         this.descricao = descricao;
+        this.statusConsulta = null;
     }
 
     public int getId() {
@@ -45,19 +47,27 @@ public class Consulta {
         this.descricao = descricao;
     }
 
-    public PacienteStatus getStatusAtualPaciente() {
-        return this.paciente.getStatusAtual();
+    public PacienteStatus getStatusConsulta() {
+        return statusConsulta;
+    }
+
+    public void setStatusConsulta(PacienteStatus statusConsulta) {
+        this.statusConsulta = statusConsulta;
     }
 
     @Override
     public String toString() {
-        return "PACIENTE:\n" +
+        return  "--------------------------------------------------------\n"+
+                "CONSULTA #" + String.format("%03d", getId()) +
+                "\n--------------------------------------------------------\n" +
+                "STATUS: " + (statusConsulta != null ? statusConsulta : "Consulta nao iniciada") + "\n" +
+                "PACIENTE:\n" +
                 "\t- ID: " + paciente.getId() + "\n" +
                 "\t- Nome: " + paciente.getNome() + "\n" +
                 "\t- CPF: " + paciente.getCpf() + "\n" +
                 "\t- Convenio: " + paciente.getNomeConvenio() + "\n" +
                 "\t- Numero Convenio: " + paciente.getNumeroConvenio() + "\n" +
-                "\t- Status: " + paciente.getStatusAtual() + "\n\n"+
+                "\n\n"+
                 "MEDICO:\n" +
                 "\t- ID: " + medico.getId() + "\n" +
                 "\t- Nome: " + medico.getNome() + "\n" +

@@ -271,7 +271,14 @@ public class GestaoHospitalar {
                 if (consulta != null) {
                     paciente.setStatusAtual(PacienteStatus.ENTRADA);
                     consulta.setStatusConsulta(PacienteStatus.ENTRADA);
-                    System.out.println("Status inicial definido com sucesso!");
+                    //melhorar
+                    System.out.println("\nPaciente deu entrada com sucesso!");
+                    System.out.println("Paciente: " + paciente.getNome());
+                    System.out.println("Consulta #" + consulta.getId());
+                    System.out.println("Medico responsavel: Dr(a). " + consulta.getMedico().getNome());
+                    System.out.println("Pressione qualquer tecla para continuar...");
+                    scanner.nextLine();
+
                 }
             }
         } else {
@@ -285,11 +292,20 @@ public class GestaoHospitalar {
                     if (novoStatus == PacienteStatus.ALTA_CLINICA) {
                         paciente.setStatusAtual(null);
                         consultaAtiva.setStatusConsulta(PacienteStatus.ALTA_CLINICA);
-                        System.out.println("Consulta finalizada com sucesso!");
+                        System.out.println("\nAlta medica concedida!");
+                        System.out.println("Paciente: " + paciente.getNome());
+                        System.out.println("Consulta #" + consultaAtiva.getId() + " finalizada");
+                        System.out.println("Medico responsavel: Dr(a). " + consultaAtiva.getMedico().getNome());
                     } else {
                         paciente.setStatusAtual(novoStatus);
                         consultaAtiva.setStatusConsulta(novoStatus);
-                        System.out.println("Status atualizado com sucesso!");
+                        System.out.println("\nStatus atualizado com sucesso!");
+                        System.out.println("Paciente: " + paciente.getNome());
+                        System.out.println("Novo status: " + novoStatus);
+                        System.out.println("Consulta #" + consultaAtiva.getId());
+                        System.out.println("Medico responsavel: Dr(a). " + consultaAtiva.getMedico().getNome());
+                        System.out.println("Pressione qualquer tecla para continuar...");
+                        scanner.nextLine();
                     }
                 }
             } else {

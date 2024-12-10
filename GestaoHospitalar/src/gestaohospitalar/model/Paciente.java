@@ -61,7 +61,7 @@ public class Paciente extends Pessoa{
                 + "-----------------------------\n"
                 + "Telefone: " + getTelefone() + "\n"
                 + "-----------------------------\n"
-                + "Status: " + statusAtual == null ? "Disponivel":statusAtual + "\n"
+                + "Status: " + (statusAtual == null ? "Disponivel" : statusAtual) + "\n"
                 + "-----------------------------\n"
                 + "Numero Convenio: " + numeroConvenio + "\n"
                 + "-----------------------------\n"

@@ -5,11 +5,14 @@ public class Paciente extends Pessoa{
     private String numeroConvenio;
     private String nomeConvenio;
 
-    public Paciente(PacienteStatus statusAtual, String numeroConvenio, String nomeConvenio, int id, String nome, String cpf, String endereco, String telefone) {
+    public Paciente( String numeroConvenio, String nomeConvenio, int id, String nome, String cpf, String endereco, String telefone) {
         super(id, nome, cpf, endereco, telefone);
-        this.statusAtual = statusAtual;
+        this.statusAtual = null;
         this.numeroConvenio = numeroConvenio;
         this.nomeConvenio = nomeConvenio;
+    }
+
+    public Paciente() {
     }
 
     public PacienteStatus getStatusAtual() {
@@ -58,7 +61,7 @@ public class Paciente extends Pessoa{
                 + "-----------------------------\n"
                 + "Telefone: " + getTelefone() + "\n"
                 + "-----------------------------\n"
-                + "Status: " + statusAtual + "\n"
+                + "Status: " + statusAtual == null ? "Disponivel":statusAtual + "\n"
                 + "-----------------------------\n"
                 + "Numero Convenio: " + numeroConvenio + "\n"
                 + "-----------------------------\n"
